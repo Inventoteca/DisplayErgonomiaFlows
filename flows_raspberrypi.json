@@ -1,1 +1,394 @@
-[{"id":"7b532bf3.282a54","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"6aa9a900.3e3e18","type":"i2c scan","z":"7b532bf3.282a54","name":"","busno":"1","x":410,"y":260,"wires":[["12076590.59432a"],[]]},{"id":"12076590.59432a","type":"debug","z":"7b532bf3.282a54","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","statusVal":"","statusType":"auto","x":570,"y":260,"wires":[]},{"id":"69ad956b.d8fb7c","type":"inject","z":"7b532bf3.282a54","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":260,"y":260,"wires":[["6aa9a900.3e3e18"]]},{"id":"aaf67c3d.0bb47","type":"ads1x15-raspi","z":"7b532bf3.282a54","property":"A0","name":"ADC0","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_0","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_860","progGainAmp":"PGA_4_096V","x":410,"y":380,"wires":[["3c5a696e.1a8c66"]]},{"id":"199b9fba.e5e24","type":"debug","z":"7b532bf3.282a54","name":"","active":true,"tosidebar":false,"console":false,"tostatus":true,"complete":"A0.voltage","targetType":"msg","statusVal":"payload","statusType":"auto","x":740,"y":340,"wires":[]},{"id":"cd9d7932.5025c8","type":"inject","z":"7b532bf3.282a54","name":"","props":[{"p":"payload"}],"repeat":"1","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":250,"y":380,"wires":[["aaf67c3d.0bb47"]]},{"id":"3c5a696e.1a8c66","type":"ads1x15-raspi","z":"7b532bf3.282a54","property":"A1","name":"ADC1","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_1","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_860","progGainAmp":"PGA_4_096V","x":550,"y":380,"wires":[["199b9fba.e5e24","c7c49774.2f5708"]]},{"id":"c7c49774.2f5708","type":"debug","z":"7b532bf3.282a54","name":"","active":true,"tosidebar":false,"console":false,"tostatus":true,"complete":"A1.voltage","targetType":"msg","statusVal":"payload","statusType":"auto","x":740,"y":420,"wires":[]},{"id":"692ef56e.baf6bc","type":"python3-function","z":"7b532bf3.282a54","d":true,"name":"DHT22 py3","func":"\nimport sys\nsys.path.append('/usr/local/lib/python3.7/dist-packages/')\n#sys.path.append('/usr/local/lib/python3.7/dist-packages/Adafruit_DHT/__init__.py')\nimport Adafruit_DHT\n\nDHT_SENSOR = Adafruit_DHT.DHT22\nDHT_PIN = 4\n\nhumidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)\n\nif humidity is not None and temperature is not None:\n    #print(\"Temp={0:0.1f}*C  Humidity={1:0.1f}%\".format(temperature, humidity))\n    msg.payload.t = temperature\n    msg.payload.h = humidity\nelse:\n    #print(\"Failed to retrieve data from humidity sensor\"\n    msg.payload = \"Failed\"\n    \nreturn msg","outputs":1,"x":990,"y":380,"wires":[[]]},{"id":"1d34bb71.fd8b35","type":"inject","z":"7b532bf3.282a54","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"3","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":250,"y":520,"wires":[["5312126e.bf821c"]]},{"id":"6c9e8727.9b7bd8","type":"debug","z":"7b532bf3.282a54","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","statusVal":"","statusType":"auto","x":730,"y":520,"wires":[]},{"id":"e95f402d.9f0d1","type":"python-function","z":"7b532bf3.282a54","d":true,"name":"DHT22 py2","func":"import Adafruit_DHT\n\nDHT_SENSOR = Adafruit_DHT.DHT22\nDHT_PIN = 4\n\nhumidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)\n\nif humidity is not None and temperature is not None:\n    #print(\"Temp={0:0.1f}*C  Humidity={1:0.1f}%\".format(temperature, humidity))\n    msg.payload.t = temperature\n    msg.payload.h = humidity\nelse:\n    #print(\"Failed to retrieve data from humidity sensor\"\n    msg.payload = \"Failed\"\n    \nreturn msg\n","outputs":1,"x":990,"y":320,"wires":[[]]},{"id":"249cc3c7.cb7b5c","type":"pythonshell in","z":"7b532bf3.282a54","d":true,"name":"DHT py shell","pyfile":"/home/pi/.node-red/dht.py","virtualenv":"","continuous":false,"stdInData":false,"x":990,"y":440,"wires":[[]]},{"id":"847ce062.674c5","type":"tsl2561","z":"7b532bf3.282a54","address":57,"integ":"1","gain":"1","debugMode":false,"x":430,"y":620,"wires":[["fed3c5bd.6863b8"],["f75e66bf.a2d9f8"]]},{"id":"fed3c5bd.6863b8","type":"debug","z":"7b532bf3.282a54","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload.lux","targetType":"msg","statusVal":"","statusType":"auto","x":630,"y":600,"wires":[]},{"id":"24008de5.98cac2","type":"inject","z":"7b532bf3.282a54","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"1","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"measure","payloadType":"str","x":250,"y":620,"wires":[["847ce062.674c5"]]},{"id":"f75e66bf.a2d9f8","type":"debug","z":"7b532bf3.282a54","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","statusVal":"","statusType":"auto","x":620,"y":640,"wires":[]},{"id":"5312126e.bf821c","type":"exec","z":"7b532bf3.282a54","command":"python3 /home/pi/dht.py","addpay":false,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"exec dht.py","x":410,"y":520,"wires":[["defb14fb.221378","775affe3.1bab"],[],[]]},{"id":"defb14fb.221378","type":"json","z":"7b532bf3.282a54","name":"","property":"payload","action":"","pretty":false,"x":570,"y":520,"wires":[["6c9e8727.9b7bd8"]]},{"id":"775affe3.1bab","type":"debug","z":"7b532bf3.282a54","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","statusVal":"","statusType":"auto","x":590,"y":480,"wires":[]}]
+[
+    {
+        "id": "7b532bf3.282a54",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6aa9a900.3e3e18",
+        "type": "i2c scan",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "busno": "1",
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "12076590.59432a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "12076590.59432a",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "69ad956b.d8fb7c",
+        "type": "inject",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 260,
+        "wires": [
+            [
+                "6aa9a900.3e3e18"
+            ]
+        ]
+    },
+    {
+        "id": "aaf67c3d.0bb47",
+        "type": "ads1x15-raspi",
+        "z": "7b532bf3.282a54",
+        "property": "A0",
+        "name": "ADC0",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_0",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_860",
+        "progGainAmp": "PGA_4_096V",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "3c5a696e.1a8c66"
+            ]
+        ]
+    },
+    {
+        "id": "199b9fba.e5e24",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "A0.voltage",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 740,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "cd9d7932.5025c8",
+        "type": "inject",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 380,
+        "wires": [
+            [
+                "aaf67c3d.0bb47"
+            ]
+        ]
+    },
+    {
+        "id": "3c5a696e.1a8c66",
+        "type": "ads1x15-raspi",
+        "z": "7b532bf3.282a54",
+        "property": "A1",
+        "name": "ADC1",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_1",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_860",
+        "progGainAmp": "PGA_4_096V",
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "199b9fba.e5e24",
+                "c7c49774.2f5708"
+            ]
+        ]
+    },
+    {
+        "id": "c7c49774.2f5708",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "A1.voltage",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "692ef56e.baf6bc",
+        "type": "python3-function",
+        "z": "7b532bf3.282a54",
+        "d": true,
+        "name": "DHT22 py3",
+        "func": "\nimport sys\nsys.path.append('/usr/local/lib/python3.7/dist-packages/')\n#sys.path.append('/usr/local/lib/python3.7/dist-packages/Adafruit_DHT/__init__.py')\nimport Adafruit_DHT\n\nDHT_SENSOR = Adafruit_DHT.DHT22\nDHT_PIN = 4\n\nhumidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)\n\nif humidity is not None and temperature is not None:\n    #print(\"Temp={0:0.1f}*C  Humidity={1:0.1f}%\".format(temperature, humidity))\n    msg.payload.t = temperature\n    msg.payload.h = humidity\nelse:\n    #print(\"Failed to retrieve data from humidity sensor\"\n    msg.payload = \"Failed\"\n    \nreturn msg",
+        "outputs": 1,
+        "x": 990,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d34bb71.fd8b35",
+        "type": "inject",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 520,
+        "wires": [
+            [
+                "5312126e.bf821c"
+            ]
+        ]
+    },
+    {
+        "id": "6c9e8727.9b7bd8",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e95f402d.9f0d1",
+        "type": "python-function",
+        "z": "7b532bf3.282a54",
+        "d": true,
+        "name": "DHT22 py2",
+        "func": "import Adafruit_DHT\n\nDHT_SENSOR = Adafruit_DHT.DHT22\nDHT_PIN = 4\n\nhumidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)\n\nif humidity is not None and temperature is not None:\n    #print(\"Temp={0:0.1f}*C  Humidity={1:0.1f}%\".format(temperature, humidity))\n    msg.payload.t = temperature\n    msg.payload.h = humidity\nelse:\n    #print(\"Failed to retrieve data from humidity sensor\"\n    msg.payload = \"Failed\"\n    \nreturn msg\n",
+        "outputs": 1,
+        "x": 990,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "249cc3c7.cb7b5c",
+        "type": "pythonshell in",
+        "z": "7b532bf3.282a54",
+        "d": true,
+        "name": "DHT py shell",
+        "pyfile": "/home/pi/.node-red/dht.py",
+        "virtualenv": "",
+        "continuous": false,
+        "stdInData": false,
+        "x": 990,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "847ce062.674c5",
+        "type": "tsl2561",
+        "z": "7b532bf3.282a54",
+        "address": 57,
+        "integ": "1",
+        "gain": "1",
+        "debugMode": false,
+        "x": 430,
+        "y": 620,
+        "wires": [
+            [
+                "fed3c5bd.6863b8"
+            ],
+            [
+                "f75e66bf.a2d9f8"
+            ]
+        ]
+    },
+    {
+        "id": "fed3c5bd.6863b8",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.lux",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "24008de5.98cac2",
+        "type": "inject",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "measure",
+        "payloadType": "str",
+        "x": 250,
+        "y": 620,
+        "wires": [
+            [
+                "847ce062.674c5"
+            ]
+        ]
+    },
+    {
+        "id": "f75e66bf.a2d9f8",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "5312126e.bf821c",
+        "type": "exec",
+        "z": "7b532bf3.282a54",
+        "command": "python3 /home/pi/dht.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "exec dht.py",
+        "x": 410,
+        "y": 520,
+        "wires": [
+            [
+                "defb14fb.221378",
+                "775affe3.1bab"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "defb14fb.221378",
+        "type": "json",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 570,
+        "y": 520,
+        "wires": [
+            [
+                "6c9e8727.9b7bd8"
+            ]
+        ]
+    },
+    {
+        "id": "775affe3.1bab",
+        "type": "debug",
+        "z": "7b532bf3.282a54",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 480,
+        "wires": []
+    }
+]

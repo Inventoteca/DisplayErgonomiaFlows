@@ -92,7 +92,7 @@
         "z": "7b532bf3.282a54",
         "name": "",
         "active": true,
-        "tosidebar": false,
+        "tosidebar": true,
         "console": false,
         "tostatus": true,
         "complete": "A0.voltage",

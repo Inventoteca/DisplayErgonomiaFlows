@@ -1,7 +1,8 @@
 ## Código para probar sensor de sonido KY-037 (micrófono)
 # Tomar varias muestras y obtener el voltaje pico-pico
 
-N = 10 #número de muestras
+N = 30 #número de muestras
+T = 0.1 #tiempo de espera entre muestras
 
 # necessary modules and initialize the I2C bus
 import board
@@ -37,7 +38,21 @@ max_ = val
 sum_ = val
 
 for _ in range(N):
-  print(':)')
+  #print(chan2.voltage)
+  val = chan2.voltage #nueva lectura
+  min_ = min(min_, val) #guardar el minimo
+  max_ = max(max_, val) #guardar el maximo
+  sum_ += val #agregar a la suma
+  time.sleep(T) #esperar un poco
+
+avg = sum_ / N #promedio
+dif = max_ - min_ #diferencia (V pico-pico)
+
+print('Min ', min_)
+print('Max ', max_)
+print('Sum ', sum_)
+print('Avg ', avg)
+print('Dif ', dif)
 
 #end = time.time()
 #print('time ', end - start)

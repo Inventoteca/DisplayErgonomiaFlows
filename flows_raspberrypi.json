@@ -158,6 +158,7 @@
         "type": "ui_tab",
         "name": "Display Ergonomía",
         "icon": "dashboard",
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -167,7 +168,7 @@
         "name": "Colores",
         "tab": "cd412e5d.cb3a7",
         "disp": true,
-        "width": "5",
+        "width": "6",
         "collapse": false
     },
     {
@@ -195,6 +196,7 @@
         "type": "ui_tab",
         "name": "Setup",
         "icon": "dashboard",
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -235,7 +237,7 @@
         "type": "ui_tab",
         "name": "Sistema",
         "icon": "dashboard",
-        "order": 4,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -433,7 +435,7 @@
         "rgb": "rgb",
         "brightness": "100",
         "gamma": true,
-        "x": 1380,
+        "x": 1540,
         "y": 200,
         "wires": []
     },
@@ -533,7 +535,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion PPM",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 4;\nvar NeoMedicionFloor = 0; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 4;\nvar NeoMedicionFloor = 0; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -542,7 +544,8 @@
         "y": 300,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "e3c527a5.beb328"
             ]
         ]
     },
@@ -1112,7 +1115,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion LUX",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 4;\nvar NeoMedicionFloor = 64; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 4;\nvar NeoMedicionFloor = 64; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1121,7 +1124,8 @@
         "y": 260,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "b63ab9ec.655108"
             ]
         ]
     },
@@ -1130,7 +1134,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion DB",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 3;\nvar NeoMedicionFloor = 64+64; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 3;\nvar NeoMedicionFloor = 64+64; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1139,7 +1143,8 @@
         "y": 220,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "526a20c9.b2716"
             ]
         ]
     },
@@ -1148,7 +1153,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion UV",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1157,7 +1162,8 @@
         "y": 180,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "9b2b3af7.a74638"
             ]
         ]
     },
@@ -1166,7 +1172,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion HUM",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48+32; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48+32; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1175,7 +1181,8 @@
         "y": 140,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "620f6669.9ffa58"
             ]
         ]
     },
@@ -1184,7 +1191,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion TEM",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48+32+32; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel().\n\n//Editar acá\nvar numDigitos = 2;\nvar NeoMedicionFloor = 64+64+48+32+32; //¿En qué número de pixel comienza este número?\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1193,7 +1200,8 @@
         "y": 100,
         "wires": [
             [
-                "89bb9876.262388"
+                "89bb9876.262388",
+                "2225f5b6.e1854a"
             ]
         ]
     },
@@ -2335,7 +2343,7 @@
         "type": "ui_slider",
         "z": "af48f45.b140f08",
         "name": "",
-        "label": "ColorSobreLimite",
+        "label": "Sobre Límite",
         "tooltip": "R-G-B W=0",
         "group": "a68eebc0.1d6ba8",
         "order": 0,
@@ -2347,12 +2355,11 @@
         "min": 0,
         "max": "255",
         "step": 1,
-        "x": 170,
-        "y": 60,
+        "x": 150,
+        "y": 100,
         "wires": [
             [
-                "3d61fbe7.ee3544",
-                "f8596aff.8e7298"
+                "3d61fbe7.ee3544"
             ]
         ]
     },
@@ -2361,8 +2368,8 @@
         "type": "ui_slider",
         "z": "af48f45.b140f08",
         "name": "",
-        "label": "ColorEnRango",
-        "tooltip": "R-G-B W=0",
+        "label": "En Rango",
+        "tooltip": "R-G-B-W de 0 a 55",
         "group": "a68eebc0.1d6ba8",
         "order": 0,
         "width": 0,
@@ -2371,13 +2378,13 @@
         "outs": "all",
         "topic": "",
         "min": 0,
-        "max": "255",
+        "max": "165",
         "step": 1,
-        "x": 160,
-        "y": 100,
+        "x": 140,
+        "y": 60,
         "wires": [
             [
-                "e70d0d23.a9031"
+                "3810098b.fd3456"
             ]
         ]
     },
@@ -2386,7 +2393,7 @@
         "type": "ui_slider",
         "z": "af48f45.b140f08",
         "name": "",
-        "label": "ColorBajoLímite",
+        "label": "Bajo Límite",
         "tooltip": "R-G-B W=0",
         "group": "a68eebc0.1d6ba8",
         "order": 0,
@@ -2398,7 +2405,7 @@
         "min": 0,
         "max": "255",
         "step": 1,
-        "x": 160,
+        "x": 150,
         "y": 140,
         "wires": [
             [
@@ -2701,12 +2708,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 60,
+        "x": 540,
+        "y": 100,
         "wires": [
             [
                 "94083534.5a34f8",
-                "ecc164a5.c9a6a8"
+                "ecc164a5.c9a6a8",
+                "99a768ad.6ce6e8"
             ]
         ]
     },
@@ -2729,12 +2737,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 510,
-        "y": 100,
+        "x": 670,
+        "y": 20,
         "wires": [
             [
-                "94083534.5a34f8",
-                "ecc164a5.c9a6a8"
+                "99a768ad.6ce6e8"
             ]
         ]
     },
@@ -2757,12 +2764,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 510,
+        "x": 550,
         "y": 140,
         "wires": [
             [
                 "94083534.5a34f8",
-                "ecc164a5.c9a6a8"
+                "ecc164a5.c9a6a8",
+                "99a768ad.6ce6e8"
             ]
         ]
     },
@@ -3101,16 +3109,16 @@
         "type": "function",
         "z": "af48f45.b140f08",
         "name": "testColor",
-        "func": "var col = msg.payload;  // color para Wheel().\n\n\nmsg.payload = \"0,272,\" + Wheel(col);\nnode.send(msg);\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var col = msg.payload;  // color para Wheel().\n\n\nmsg.payload = \"0,272,\" + Wheel(col);\nnode.send(msg);\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
-        "x": 740,
-        "y": 100,
+        "initialize": "",
+        "finalize": "",
+        "x": 760,
+        "y": 140,
         "wires": [
             [
-                "1a7f1500.a33a7b",
-                "99a768ad.6ce6e8",
-                "f8596aff.8e7298"
+                "1a7f1500.a33a7b"
             ]
         ]
     },
@@ -3122,8 +3130,8 @@
         "links": [
             "44351bbd.4fdf94"
         ],
-        "x": 855,
-        "y": 100,
+        "x": 875,
+        "y": 140,
         "wires": []
     },
     {
@@ -3135,7 +3143,7 @@
             "1a7f1500.a33a7b",
             "b1aa92b3.9f567"
         ],
-        "x": 1235,
+        "x": 1395,
         "y": 200,
         "wires": [
             [
@@ -3169,7 +3177,7 @@
             "cdf6951b.e464b8",
             "d706a7fb.398338"
         ],
-        "x": 1275,
+        "x": 1315,
         "y": 120,
         "wires": []
     },
@@ -4335,7 +4343,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
+        "x": 1080,
         "y": 80,
         "wires": [
             [
@@ -4348,17 +4356,19 @@
         "type": "trigger",
         "z": "af48f45.b140f08",
         "name": "",
-        "op1": "1",
+        "op1": "",
         "op2": "0",
-        "op1type": "str",
+        "op1type": "nul",
         "op2type": "str",
         "duration": "3",
         "extend": true,
+        "overrideDelay": false,
         "units": "s",
         "reset": "",
         "bytopic": "all",
+        "topic": "topic",
         "outputs": 1,
-        "x": 1220,
+        "x": 1260,
         "y": 80,
         "wires": [
             [
@@ -4385,7 +4395,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1140,
+        "x": 1180,
         "y": 120,
         "wires": [
             [
@@ -4538,20 +4548,6 @@
         "l": false
     },
     {
-        "id": "f8596aff.8e7298",
-        "type": "debug",
-        "z": "af48f45.b140f08",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 730,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "264a75c6.69c19a",
         "type": "i2c scan",
         "z": "346374ca.eee81c",
@@ -4587,7 +4583,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "num",
-        "x": 970,
+        "x": 1010,
         "y": 120,
         "wires": [
             [
@@ -4604,11 +4600,11 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Color:",
+        "label": "Color seleccionado:",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 750,
-        "y": 140,
+        "x": 790,
+        "y": 80,
         "wires": []
     },
     {
@@ -5416,8 +5412,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -5497,8 +5493,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -5578,8 +5574,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -5659,8 +5655,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -5740,8 +5736,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -5821,8 +5817,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "ColorEnRango",
-                "tot": "global"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -6762,7 +6758,7 @@
         "z": "af48f45.b140f08",
         "name": "Bloquea el display de mediciones hasta que dejes de testear",
         "info": "",
-        "x": 1060,
+        "x": 1100,
         "y": 40,
         "wires": []
     },
@@ -7044,6 +7040,157 @@
         "layout": "row-spread",
         "x": 1010,
         "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3810098b.fd3456",
+        "type": "function",
+        "z": "af48f45.b140f08",
+        "name": "testColorWHITE",
+        "func": "var col = msg.payload || 0;  // color para Wheel().\n\n\nmsg.payload = \"0,272,\" + Wheel(col);\nnode.send(msg);\n\n\n\nfunction Wheel( WheelPos)\n{\n  if(WheelPos == 0) return 200 + \",\" + 200 + \",\" + 200;\n  \n  \n  if (WheelPos < 56 && WheelPos > 0 )\n  {\n    return (200 + WheelPos) + \",\" + 200 + \",\" + 200;\n  }\n  \n  else if (WheelPos < 111 && WheelPos > 55 )\n  {\n    WheelPos -= 55;\n    return  200 + \",\" + 200 + \",\" + (200 + WheelPos);\n  }\n  \n  else if (WheelPos < 166 && WheelPos > 110 )\n  {\n    WheelPos -= 110;\n    return 200 + \",\" + (200 + WheelPos) + \",\" + 200;\n  }\n}\n\n\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 60,
+        "wires": [
+            [
+                "1a7f1500.a33a7b",
+                "ecc164a5.c9a6a8",
+                "6e79431.a1363bc"
+            ]
+        ]
+    },
+    {
+        "id": "6e79431.a1363bc",
+        "type": "change",
+        "z": "af48f45.b140f08",
+        "name": "formato",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0,272,",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 20,
+        "wires": [
+            [
+                "e70d0d23.a9031"
+            ]
+        ]
+    },
+    {
+        "id": "e3c527a5.beb328",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "PPM",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b63ab9ec.655108",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "LUX",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "526a20c9.b2716",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "DB",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9b2b3af7.a74638",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "UV",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "620f6669.9ffa58",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "HUM",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2225f5b6.e1854a",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "TEM",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 100,
         "wires": []
     }
 ]

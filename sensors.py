@@ -1,13 +1,15 @@
-# Display Ergonomia - Sensors
+# Display Ergonomia - sensors
 
 # Se obtienen lecturas de los siguientes sensores
 
-# - DHT22 (temperatura y humedad)
+# - TSL2561 (lux visible)
 # - ML8511 (luz UV)
 # - MQ-135 (calidad del aire)
 # - KY-037 (sonido)
 
 # Los 3 últimos sensores se leen a través del ADS1115
+# El sensor DHT22 (temperatura y humedad) se lee en dht_loop.py,
+# se movió a otro script para muestrear lo más rápido posible en este script.
 
 # funcion para calcular relacion lineal
 def mapf(x, in_min, in_max, out_min, out_max):
@@ -18,7 +20,6 @@ import json
 import time
 import board
 import busio
-import Adafruit_DHT
 import adafruit_tsl2561
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
@@ -34,8 +35,6 @@ KY_N = 50 #número de muestras
 KY_T = 0.0 #tiempo de espera entre muestras
 
 # Objetos
-DHT_SENSOR = Adafruit_DHT.DHT22
-DHT_PIN = 4
 i2c = busio.I2C(board.SCL, board.SDA)
 ads = ADS.ADS1115(i2c)
 tsl = adafruit_tsl2561.TSL2561(i2c)
@@ -51,41 +50,28 @@ chan2 = AnalogIn(ads, ADS.P2) #KY-037 (sonido)
 # Lecturas ==========================================
 
 while (True):
-  # Leer DHT22 ----------------------------------------
-  humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-  # valor cero en caso de error
-  if humidity is None and temperature is None:
-    humidity = 0
-    temperature = 0
-  # pasar a diccionario
-  data["dht"] = {
-    "humidity": humidity,
-    "temperature": temperature
+  #Leer TSL2561 (lux) -------------------------------
+  broadband = tsl.broadband
+  infrared = tsl.infrared
+  lux = tsl.lux
+  if lux is None:
+    lux = 0
+  #pasar a diccionario
+  data["light"] = {
+    "broadband": broadband,
+    "infrared": infrared,
+    "lux": lux
   }
-  
+
   # Leer ML8511 (luz UV) ----------------------------
   uv_voltage = chan0.voltage
   uv_intensity = mapf(uv_voltage, 0.985, 2.2, 0.0, 10.0)
   uv_index = uv_intensity * UV_INDEX_MULT
-  # pasr a diccionario
+  # pasar a diccionario
   data["uv"] = {
     "voltage": uv_voltage,
     "intensity": uv_intensity,
     "index": uv_index
-  }
-  
-  #Leer TSL2561 (lux)
-  broadband = tsl.broadband
-  infrared = tsl.infrared
-  if tsl.lux is None:
-    lux = 0
-  else:
-    lux = tsl.lux
-  #pasar a diccionario
-  data["luz"] = {
-    "broadband": broadband,
-    "infrared": infrared,
-    "lux": lux
   }
   
   # Leer MQ-135 (calidad del aire) -------------------
@@ -131,4 +117,4 @@ while (True):
   }
   
   print(json.dumps(data)) #exportar datos
-  time.sleep(1.0) #esperar antes del siguiente loop
+  #time.sleep(1.0) #esperar antes del siguiente loop

@@ -19,6 +19,7 @@ import time
 import board
 import busio
 import Adafruit_DHT
+import adafruit_tsl2561
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
@@ -37,6 +38,9 @@ DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 4
 i2c = busio.I2C(board.SCL, board.SDA)
 ads = ADS.ADS1115(i2c)
+tsl = adafruit_tsl2561.TSL2561(i2c)
+tsl.gain = 0 #0=1x, 1=16x
+tsl.integration_time = 0 #0=13.7ms, 1=101ms, 2=402ms, or 3=manual
 data = {} #diccionario vacío
 
 # Canales del ADC
@@ -61,13 +65,27 @@ while (True):
   
   # Leer ML8511 (luz UV) ----------------------------
   uv_voltage = chan0.voltage
-  uv_intensity = mapf(uv_voltage, 0.99, 2.2, 0.0, 10.0)
+  uv_intensity = mapf(uv_voltage, 0.985, 2.2, 0.0, 10.0)
   uv_index = uv_intensity * UV_INDEX_MULT
   # pasr a diccionario
   data["uv"] = {
     "voltage": uv_voltage,
     "intensity": uv_intensity,
     "index": uv_index
+  }
+  
+  #Leer TSL2561 (lux)
+  broadband = tsl.broadband
+  infrared = tsl.infrared
+  if lux is None:
+    lux = 0
+  else:
+    lux = tsl.lux
+  #pasar a diccionario
+  data["luz"] = {
+    "broadband": broadband,
+    "infrared": infrared,
+    "lux": lux
   }
   
   # Leer MQ-135 (calidad del aire) -------------------

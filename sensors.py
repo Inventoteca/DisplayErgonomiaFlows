@@ -77,7 +77,7 @@ while (True):
   #Leer TSL2561 (lux)
   broadband = tsl.broadband
   infrared = tsl.infrared
-  if lux is None:
+  if tsl.lux is None:
     lux = 0
   else:
     lux = tsl.lux

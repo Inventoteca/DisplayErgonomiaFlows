@@ -1478,7 +1478,7 @@
         "type": "debug",
         "z": "f15c88c3.1d8bf8",
         "name": "lux",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2380,25 +2380,12 @@
         "z": "af48f45.b140f08",
         "name": "fromEndColorTester",
         "links": [
-            "b7fd9f13.20bed",
-            "cf7159e1.54dd98",
-            "aa61d0d5.57807",
-            "f8fc66a0.9ea338",
-            "671e37ae.a0a358",
-            "35c7c46d.079d7c",
-            "8b89f55a.8197e8",
-            "de168770.760f28",
-            "ee3a741a.89c158",
-            "d83834ec.73f158",
-            "785f50d6.25d47",
-            "59dbddd0.8cd1c4",
-            "b41b0138.42c68",
-            "9bf1efad.9d235",
             "1af4012d.4e34ff",
-            "dcd1a70a.f7e738",
-            "defd610b.709a1",
+            "9bf1efad.9d235",
             "cdf6951b.e464b8",
-            "d706a7fb.398338"
+            "d706a7fb.398338",
+            "dcd1a70a.f7e738",
+            "defd610b.709a1"
         ],
         "x": 1395,
         "y": 180,
@@ -2410,7 +2397,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionLUX",
         "links": [
-            "38bd160c.8624da",
             "483c8c74.134a04"
         ],
         "x": 175,
@@ -2454,7 +2440,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionDB",
         "links": [
-            "38bd160c.8624da",
             "bedea034.18a55"
         ],
         "x": 175,
@@ -2498,7 +2483,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionUV",
         "links": [
-            "38bd160c.8624da",
             "705d30a8.42f9f"
         ],
         "x": 175,
@@ -2542,7 +2526,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionHUM",
         "links": [
-            "38bd160c.8624da",
             "dbdf8f.446c807"
         ],
         "x": 175,
@@ -2586,7 +2569,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionTEMP",
         "links": [
-            "38bd160c.8624da",
             "235f557c.d293ea"
         ],
         "x": 175,
@@ -2630,7 +2612,6 @@
         "z": "cf4eb861.964c88",
         "name": "toRelanzarUltimaMedicionPPM",
         "links": [
-            "38bd160c.8624da",
             "962f6f64.c20ed"
         ],
         "x": 175,

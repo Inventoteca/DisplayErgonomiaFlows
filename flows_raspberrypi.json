@@ -23,7 +23,7 @@
     {
         "id": "c38c08a9.69fc18",
         "type": "tab",
-        "label": "setColores",
+        "label": "Rango de Colores",
         "disabled": false,
         "info": ""
     },
@@ -1575,7 +1575,7 @@
         "max": "255",
         "step": 1,
         "x": 150,
-        "y": 100,
+        "y": 220,
         "wires": [
             [
                 "3d61fbe7.ee3544"
@@ -1588,7 +1588,7 @@
         "z": "af48f45.b140f08",
         "name": "",
         "label": "En Rango",
-        "tooltip": "R-G-B-W de 0 a 55",
+        "tooltip": "R-G-B W=0",
         "group": "a68eebc0.1d6ba8",
         "order": 0,
         "width": 0,
@@ -1597,13 +1597,13 @@
         "outs": "all",
         "topic": "",
         "min": 0,
-        "max": "165",
+        "max": "255",
         "step": 1,
         "x": 140,
-        "y": 60,
+        "y": 180,
         "wires": [
             [
-                "3810098b.fd3456"
+                "e70d0d23.a9031"
             ]
         ]
     },
@@ -1625,7 +1625,7 @@
         "max": "255",
         "step": 1,
         "x": 150,
-        "y": 140,
+        "y": 260,
         "wires": [
             [
                 "5b6d37b1.b1ed78"
@@ -1648,7 +1648,7 @@
         "delay": "0",
         "topic": "",
         "x": 260,
-        "y": 220,
+        "y": 440,
         "wires": [
             [
                 "80bf040e.d60b58"
@@ -1671,7 +1671,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 260,
+        "y": 480,
         "wires": [
             [
                 "b9a56e03.3d6a8"
@@ -1694,7 +1694,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 520,
+        "y": 740,
         "wires": [
             [
                 "b0ec2dbe.22795"
@@ -1717,7 +1717,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 560,
+        "y": 780,
         "wires": [
             [
                 "3612b67a.fdb78a"
@@ -1740,7 +1740,7 @@
         "delay": "0",
         "topic": "",
         "x": 260,
-        "y": 320,
+        "y": 540,
         "wires": [
             [
                 "93fd1aea.350cf8"
@@ -1763,7 +1763,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 360,
+        "y": 580,
         "wires": [
             [
                 "cad322d7.6a2ce"
@@ -1786,7 +1786,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 420,
+        "y": 640,
         "wires": [
             [
                 "d5e2d319.c3ac3"
@@ -1809,7 +1809,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 460,
+        "y": 680,
         "wires": [
             [
                 "bbe77b49.f122d8"
@@ -1832,7 +1832,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 620,
+        "y": 840,
         "wires": [
             [
                 "1c971bac.e89d04"
@@ -1855,7 +1855,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 660,
+        "y": 880,
         "wires": [
             [
                 "81d59f1c.45f1f"
@@ -1878,7 +1878,7 @@
         "delay": "0",
         "topic": "",
         "x": 260,
-        "y": 720,
+        "y": 940,
         "wires": [
             [
                 "e9d5b4de.6d0318"
@@ -1901,7 +1901,7 @@
         "delay": "0",
         "topic": "",
         "x": 250,
-        "y": 760,
+        "y": 980,
         "wires": [
             [
                 "3e698dc4.1f57e2"
@@ -1928,7 +1928,7 @@
         "to": "",
         "reg": false,
         "x": 540,
-        "y": 100,
+        "y": 220,
         "wires": [
             [
                 "94083534.5a34f8",
@@ -1956,11 +1956,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 20,
+        "x": 550,
+        "y": 180,
         "wires": [
             [
-                "99a768ad.6ce6e8"
+                "99a768ad.6ce6e8",
+                "ecc164a5.c9a6a8",
+                "94083534.5a34f8"
             ]
         ]
     },
@@ -1984,7 +1986,7 @@
         "to": "",
         "reg": false,
         "x": 550,
-        "y": 140,
+        "y": 260,
         "wires": [
             [
                 "94083534.5a34f8",
@@ -2013,7 +2015,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 220,
+        "y": 440,
         "wires": [
             []
         ]
@@ -2038,7 +2040,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 260,
+        "y": 480,
         "wires": [
             []
         ]
@@ -2063,7 +2065,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 620,
+        "y": 840,
         "wires": [
             []
         ]
@@ -2088,7 +2090,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 660,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2113,7 +2115,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 320,
+        "y": 540,
         "wires": [
             []
         ]
@@ -2138,7 +2140,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 360,
+        "y": 580,
         "wires": [
             []
         ]
@@ -2163,7 +2165,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 420,
+        "y": 640,
         "wires": [
             []
         ]
@@ -2188,7 +2190,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 460,
+        "y": 680,
         "wires": [
             []
         ]
@@ -2213,7 +2215,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 520,
+        "y": 740,
         "wires": [
             []
         ]
@@ -2238,7 +2240,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 560,
+        "y": 780,
         "wires": [
             []
         ]
@@ -2263,7 +2265,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 720,
+        "y": 940,
         "wires": [
             []
         ]
@@ -2288,7 +2290,7 @@
         "to": "",
         "reg": false,
         "x": 510,
-        "y": 760,
+        "y": 980,
         "wires": [
             []
         ]
@@ -2335,8 +2337,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 760,
-        "y": 140,
+        "x": 800,
+        "y": 260,
         "wires": [
             [
                 "1a7f1500.a33a7b"
@@ -2351,8 +2353,8 @@
         "links": [
             "44351bbd.4fdf94"
         ],
-        "x": 875,
-        "y": 240,
+        "x": 915,
+        "y": 260,
         "wires": []
     },
     {
@@ -2398,8 +2400,8 @@
             "cdf6951b.e464b8",
             "d706a7fb.398338"
         ],
-        "x": 1315,
-        "y": 120,
+        "x": 1395,
+        "y": 180,
         "wires": []
     },
     {
@@ -3409,7 +3411,7 @@
         "id": "99a768ad.6ce6e8",
         "type": "change",
         "z": "af48f45.b140f08",
-        "name": "",
+        "name": "true global.colorTestOn",
         "rules": [
             {
                 "t": "set",
@@ -3424,8 +3426,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 80,
+        "x": 850,
+        "y": 180,
         "wires": [
             [
                 "3661926d.5169ae"
@@ -3449,8 +3451,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1260,
-        "y": 80,
+        "x": 1060,
+        "y": 180,
         "wires": [
             [
                 "318e8e2c.1da9c2"
@@ -3461,7 +3463,7 @@
         "id": "318e8e2c.1da9c2",
         "type": "change",
         "z": "af48f45.b140f08",
-        "name": "",
+        "name": "false global.colorTestOn",
         "rules": [
             {
                 "t": "set",
@@ -3476,8 +3478,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1180,
-        "y": 120,
+        "x": 1250,
+        "y": 180,
         "wires": [
             [
                 "38bd160c.8624da"
@@ -3520,8 +3522,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "num",
-        "x": 1010,
-        "y": 120,
+        "x": 1070,
+        "y": 220,
         "wires": [
             [
                 "318e8e2c.1da9c2"
@@ -3540,8 +3542,8 @@
         "label": "Color seleccionado:",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 790,
-        "y": 80,
+        "x": 830,
+        "y": 220,
         "wires": []
     },
     {
@@ -5202,7 +5204,7 @@
         "payload": "maxErgoTemp",
         "payloadType": "global",
         "x": 115,
-        "y": 220,
+        "y": 440,
         "wires": [
             [
                 "c5983596.e6ae58"
@@ -5232,7 +5234,7 @@
         "payload": "minErgoTemp",
         "payloadType": "global",
         "x": 115,
-        "y": 260,
+        "y": 480,
         "wires": [
             [
                 "414f5c8e.451c24"
@@ -5262,7 +5264,7 @@
         "payload": "maxErgoHum",
         "payloadType": "global",
         "x": 115,
-        "y": 320,
+        "y": 540,
         "wires": [
             [
                 "f09fc5b9.059238"
@@ -5292,7 +5294,7 @@
         "payload": "minErgoHum",
         "payloadType": "global",
         "x": 115,
-        "y": 360,
+        "y": 580,
         "wires": [
             [
                 "741ef3f1.3a083c"
@@ -5322,7 +5324,7 @@
         "payload": "maxErgoUV",
         "payloadType": "global",
         "x": 115,
-        "y": 420,
+        "y": 640,
         "wires": [
             [
                 "7379bbd3.4e2db4"
@@ -5352,7 +5354,7 @@
         "payload": "minErgoUV",
         "payloadType": "global",
         "x": 115,
-        "y": 460,
+        "y": 680,
         "wires": [
             [
                 "98c31a11.966318"
@@ -5382,7 +5384,7 @@
         "payload": "maxErgoDB",
         "payloadType": "global",
         "x": 115,
-        "y": 520,
+        "y": 740,
         "wires": [
             [
                 "d742dae3.baa1c8"
@@ -5412,7 +5414,7 @@
         "payload": "minErgoDB",
         "payloadType": "global",
         "x": 115,
-        "y": 560,
+        "y": 780,
         "wires": [
             [
                 "565e54a0.dab03c"
@@ -5442,7 +5444,7 @@
         "payload": "maxErgoLux",
         "payloadType": "global",
         "x": 115,
-        "y": 620,
+        "y": 840,
         "wires": [
             [
                 "ebc36d2c.0111d"
@@ -5472,7 +5474,7 @@
         "payload": "minErgoLux",
         "payloadType": "global",
         "x": 115,
-        "y": 660,
+        "y": 880,
         "wires": [
             [
                 "3bf42045.6f422"
@@ -5502,7 +5504,7 @@
         "payload": "maxErgoPPM",
         "payloadType": "global",
         "x": 115,
-        "y": 720,
+        "y": 940,
         "wires": [
             [
                 "ec250e78.3830f"
@@ -5532,7 +5534,7 @@
         "payload": "minErgoPPM",
         "payloadType": "global",
         "x": 115,
-        "y": 760,
+        "y": 980,
         "wires": [
             [
                 "33d22fc8.d3021"
@@ -5546,8 +5548,8 @@
         "z": "af48f45.b140f08",
         "name": "Bloquea el display de mediciones hasta que dejes de testear",
         "info": "",
-        "x": 1100,
-        "y": 40,
+        "x": 960,
+        "y": 120,
         "wires": []
     },
     {
@@ -5829,55 +5831,6 @@
         "x": 1010,
         "y": 360,
         "wires": []
-    },
-    {
-        "id": "3810098b.fd3456",
-        "type": "function",
-        "z": "af48f45.b140f08",
-        "name": "testColorWHITE",
-        "func": "var col = msg.payload || 0;  // color para Wheel().\n\n\nmsg.payload = \"0,272,\" + Wheel(col);\nnode.send(msg);\n\n\n\nfunction Wheel( WheelPos)\n{\n  if(WheelPos == 0) return 200 + \",\" + 200 + \",\" + 200;\n  \n  \n  if (WheelPos < 56 && WheelPos > 0 )\n  {\n    return (200 + WheelPos) + \",\" + 200 + \",\" + 200;\n  }\n  \n  else if (WheelPos < 111 && WheelPos > 55 )\n  {\n    WheelPos -= 55;\n    return  200 + \",\" + 200 + \",\" + (200 + WheelPos);\n  }\n  \n  else if (WheelPos < 166 && WheelPos > 110 )\n  {\n    WheelPos -= 110;\n    return 200 + \",\" + (200 + WheelPos) + \",\" + 200;\n  }\n}\n\n\nreturn;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 320,
-        "y": 60,
-        "wires": [
-            [
-                "1a7f1500.a33a7b",
-                "ecc164a5.c9a6a8",
-                "6e79431.a1363bc"
-            ]
-        ]
-    },
-    {
-        "id": "6e79431.a1363bc",
-        "type": "change",
-        "z": "af48f45.b140f08",
-        "name": "formato",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "0,272,",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 20,
-        "wires": [
-            [
-                "e70d0d23.a9031"
-            ]
-        ]
     },
     {
         "id": "e3c527a5.beb328",
@@ -6713,7 +6666,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion ",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel()\nvar numDigitos = msg.numDig; //Dígitos por Neomedición\nvar NeoMedicionFloor = msg.NeoFloor;  //Dónde comienzan los pixeles de esta NeoMedición\n\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('ColorEnRango');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel()\nvar numDigitos = msg.numDig; //Dígitos por Neomedición\nvar NeoMedicionFloor = msg.NeoFloor;  //Dónde comienzan los pixeles de esta NeoMedición\n\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('colorWHITE');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6987,5 +6940,162 @@
         "x": 350,
         "y": 400,
         "wires": []
+    },
+    {
+        "id": "e17f6a26.43ee48",
+        "type": "function",
+        "z": "af48f45.b140f08",
+        "d": true,
+        "name": "testColorWHITE",
+        "func": "var col = msg.payload || 0;  // color para Wheel().\n\n\nmsg.payload = \"0,272,\" + Wheel(col);\nnode.send(msg);\n\n\n\nfunction Wheel( WheelPos)\n{\n  if(WheelPos == 0) return 200 + \",\" + 200 + \",\" + 200;\n  \n  \n  if (WheelPos < 56 && WheelPos > 0 )\n  {\n    return (200 + WheelPos) + \",\" + 200 + \",\" + 200;\n  }\n  \n  else if (WheelPos < 111 && WheelPos > 55 )\n  {\n    WheelPos -= 55;\n    return  200 + \",\" + 200 + \",\" + (200 + WheelPos);\n  }\n  \n  else if (WheelPos < 166 && WheelPos > 110 )\n  {\n    WheelPos -= 110;\n    return 200 + \",\" + (200 + WheelPos) + \",\" + 200;\n  }\n}\n\n\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1100,
+        "y": 440,
+        "wires": [
+            [
+                "5e20519c.fd63f"
+            ]
+        ]
+    },
+    {
+        "id": "5e20519c.fd63f",
+        "type": "change",
+        "z": "af48f45.b140f08",
+        "d": true,
+        "name": "formato",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0,272,",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1260,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebbe6f1d.d56ca",
+        "type": "ui_slider",
+        "z": "af48f45.b140f08",
+        "d": true,
+        "name": "",
+        "label": "En Rango",
+        "tooltip": "R-G-B-W de 0 a 55",
+        "group": "a68eebc0.1d6ba8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "",
+        "min": 0,
+        "max": "165",
+        "step": 1,
+        "x": 940,
+        "y": 440,
+        "wires": [
+            [
+                "e17f6a26.43ee48"
+            ]
+        ]
+    },
+    {
+        "id": "bcce9e86.3ea1f",
+        "type": "comment",
+        "z": "af48f45.b140f08",
+        "name": "Se debe iniciar con el modo colorTest apagado para que los números se muestren.",
+        "info": "",
+        "x": 1490,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "288b7e3.ef6ba82",
+        "type": "comment",
+        "z": "af48f45.b140f08",
+        "name": "Para configurar los colores de los tres niveles",
+        "info": "",
+        "x": 250,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "81fca266.000d4",
+        "type": "comment",
+        "z": "af48f45.b140f08",
+        "name": "Para configurar los límites de los tres niveles",
+        "info": "",
+        "x": 250,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3e657bde.90a094",
+        "type": "inject",
+        "z": "af48f45.b140f08",
+        "name": "COLOR BLANCO ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "200,200,242",
+        "payloadType": "str",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "b9948702.535458"
+            ]
+        ]
+    },
+    {
+        "id": "b9948702.535458",
+        "type": "change",
+        "z": "af48f45.b140f08",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "colorWHITE",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 300,
+        "wires": [
+            []
+        ]
     }
 ]

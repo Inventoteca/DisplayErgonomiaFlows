@@ -2400,33 +2400,6 @@
         "y": 260,
         "wires": [
             [
-                "413f1db1.43d8f4"
-            ]
-        ]
-    },
-    {
-        "id": "413f1db1.43d8f4",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorLUX",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentLux",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
-        "y": 260,
-        "wires": [
-            [
                 "20e0d0ea.4ebba"
             ]
         ]
@@ -2440,33 +2413,6 @@
             "bedea034.18a55"
         ],
         "x": 175,
-        "y": 220,
-        "wires": [
-            [
-                "f529eb3a.58fd78"
-            ]
-        ]
-    },
-    {
-        "id": "f529eb3a.58fd78",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorDB",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentDB",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
         "y": 220,
         "wires": [
             [
@@ -2486,33 +2432,6 @@
         "y": 180,
         "wires": [
             [
-                "48e1e9db.beb5f8"
-            ]
-        ]
-    },
-    {
-        "id": "48e1e9db.beb5f8",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorUV",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentUV",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
-        "y": 180,
-        "wires": [
-            [
                 "9bbb1af1.b5bef8"
             ]
         ]
@@ -2526,33 +2445,6 @@
             "dbdf8f.446c807"
         ],
         "x": 175,
-        "y": 140,
-        "wires": [
-            [
-                "64c74097.0c4ac"
-            ]
-        ]
-    },
-    {
-        "id": "64c74097.0c4ac",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorHUM",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentHum",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
         "y": 140,
         "wires": [
             [
@@ -2572,34 +2464,7 @@
         "y": 100,
         "wires": [
             [
-                "1348b285.7cf52d"
-            ]
-        ]
-    },
-    {
-        "id": "1348b285.7cf52d",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorTEMP",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentTemp",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 330,
-        "y": 100,
-        "wires": [
-            [
-                "471e9447.a99aec"
+                "3c61430a.f9ae7c"
             ]
         ]
     },
@@ -2612,33 +2477,6 @@
             "962f6f64.c20ed"
         ],
         "x": 175,
-        "y": 300,
-        "wires": [
-            [
-                "9d54dc0b.8e5a4"
-            ]
-        ]
-    },
-    {
-        "id": "9d54dc0b.8e5a4",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "ÚltimoValorPPM",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentPPM",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
         "y": 300,
         "wires": [
             [
@@ -3525,231 +3363,6 @@
         "wires": []
     },
     {
-        "id": "9bf1efad.9d235",
-        "type": "link in",
-        "z": "c38c08a9.69fc18",
-        "name": "toRelanzarUltimaMedicion",
-        "links": [
-            "38bd160c.8624da",
-            "1554457f.975ecb",
-            "2f3bccba.2301e4"
-        ],
-        "x": 115,
-        "y": 100,
-        "wires": [
-            [
-                "17313c68.b873a4"
-            ]
-        ]
-    },
-    {
-        "id": "17313c68.b873a4",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ÚltimoValorL",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentLux",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 250,
-        "y": 100,
-        "wires": [
-            [
-                "5fe8e85f.113468"
-            ]
-        ]
-    },
-    {
-        "id": "1af4012d.4e34ff",
-        "type": "link in",
-        "z": "c38c08a9.69fc18",
-        "name": "toRelanzarUltimaMedicion",
-        "links": [
-            "38bd160c.8624da",
-            "1554457f.975ecb",
-            "2f3bccba.2301e4"
-        ],
-        "x": 115,
-        "y": 660,
-        "wires": [
-            [
-                "434fd69d.d28a88"
-            ]
-        ]
-    },
-    {
-        "id": "434fd69d.d28a88",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ÚltimoValorD",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentDB",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 250,
-        "y": 660,
-        "wires": [
-            [
-                "9004acf7.9de09"
-            ]
-        ]
-    },
-    {
-        "id": "dcd1a70a.f7e738",
-        "type": "link in",
-        "z": "c38c08a9.69fc18",
-        "name": "toRelanzarUltimaMedicion",
-        "links": [
-            "38bd160c.8624da",
-            "1554457f.975ecb",
-            "2f3bccba.2301e4"
-        ],
-        "x": 115,
-        "y": 520,
-        "wires": [
-            [
-                "878b2030.a2b19"
-            ]
-        ]
-    },
-    {
-        "id": "878b2030.a2b19",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ÚltimoValorU",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentUV",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 250,
-        "y": 520,
-        "wires": [
-            [
-                "83d17a28.450228"
-            ]
-        ]
-    },
-    {
-        "id": "defd610b.709a1",
-        "type": "link in",
-        "z": "c38c08a9.69fc18",
-        "name": "toRelanzarUltimaMedicion",
-        "links": [
-            "38bd160c.8624da",
-            "1554457f.975ecb",
-            "2f3bccba.2301e4"
-        ],
-        "x": 115,
-        "y": 380,
-        "wires": [
-            [
-                "9ed2f98f.aa5578"
-            ]
-        ]
-    },
-    {
-        "id": "9ed2f98f.aa5578",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ÚltimoValorH",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentHum",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 250,
-        "y": 380,
-        "wires": [
-            [
-                "684351a0.537d6"
-            ]
-        ]
-    },
-    {
-        "id": "cdf6951b.e464b8",
-        "type": "link in",
-        "z": "c38c08a9.69fc18",
-        "name": "toRelanzarUltimaMedicion",
-        "links": [
-            "38bd160c.8624da",
-            "1554457f.975ecb",
-            "2f3bccba.2301e4"
-        ],
-        "x": 115,
-        "y": 240,
-        "wires": [
-            [
-                "e7786368.d0d45"
-            ]
-        ]
-    },
-    {
-        "id": "e7786368.d0d45",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ÚltimoValorT",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "currentTemp",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 250,
-        "y": 240,
-        "wires": [
-            [
-                "f8760a6b.964718"
-            ]
-        ]
-    },
-    {
         "id": "d706a7fb.398338",
         "type": "link in",
         "z": "c38c08a9.69fc18",
@@ -3789,253 +3402,7 @@
         "x": 250,
         "y": 800,
         "wires": [
-            [
-                "28201678.c372ba"
-            ]
-        ]
-    },
-    {
-        "id": "a9d95b04.3d0408",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "colTemp",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1230,
-        "y": 240,
-        "wires": [
-            [
-                "235f557c.d293ea"
-            ]
-        ]
-    },
-    {
-        "id": "4f4692.ed0c997",
-        "type": "inject",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1070,
-        "y": 240,
-        "wires": [
-            [
-                "a9d95b04.3d0408"
-            ]
-        ]
-    },
-    {
-        "id": "eb663485.f59578",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "colHum",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1230,
-        "y": 380,
-        "wires": [
-            [
-                "dbdf8f.446c807"
-            ]
-        ]
-    },
-    {
-        "id": "23c3ff92.b22c5",
-        "type": "inject",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1070,
-        "y": 380,
-        "wires": [
-            [
-                "eb663485.f59578"
-            ]
-        ]
-    },
-    {
-        "id": "af5486d0.32fe78",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "colUV",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1240,
-        "y": 520,
-        "wires": [
-            [
-                "705d30a8.42f9f"
-            ]
-        ]
-    },
-    {
-        "id": "65cd31d3.4e50a",
-        "type": "inject",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1070,
-        "y": 520,
-        "wires": [
-            [
-                "af5486d0.32fe78"
-            ]
-        ]
-    },
-    {
-        "id": "5cccc12d.4d5a",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "colDB",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1240,
-        "y": 660,
-        "wires": [
-            [
-                "bedea034.18a55"
-            ]
-        ]
-    },
-    {
-        "id": "e016b3b2.4ea9",
-        "type": "inject",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1070,
-        "y": 660,
-        "wires": [
-            [
-                "5cccc12d.4d5a"
-            ]
-        ]
-    },
-    {
-        "id": "cf1084e7.c63fc8",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "colLUX",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1230,
-        "y": 100,
-        "wires": [
-            [
-                "483c8c74.134a04"
-            ]
-        ]
-    },
-    {
-        "id": "45c4fed6.3ff76",
-        "type": "inject",
-        "z": "c38c08a9.69fc18",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1070,
-        "y": 100,
-        "wires": [
-            [
-                "cf1084e7.c63fc8"
-            ]
+            []
         ]
     },
     {
@@ -4060,9 +3427,7 @@
         "x": 1230,
         "y": 800,
         "wires": [
-            [
-                "962f6f64.c20ed"
-            ]
+            []
         ]
     },
     {
@@ -4082,201 +3447,6 @@
         "wires": [
             [
                 "e28984d0.d8eda8"
-            ]
-        ]
-    },
-    {
-        "id": "5fe8e85f.113468",
-        "type": "switch",
-        "z": "c38c08a9.69fc18",
-        "name": "Rango Colores Lux",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "maxErgoLux",
-                "vt": "global"
-            },
-            {
-                "t": "lte",
-                "v": "minErgoLux",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 630,
-        "y": 100,
-        "wires": [
-            [
-                "6311f9b7.072c58"
-            ],
-            [
-                "83a4719.49e539"
-            ],
-            [
-                "e702f358.7f6f4"
-            ]
-        ]
-    },
-    {
-        "id": "f8760a6b.964718",
-        "type": "switch",
-        "z": "c38c08a9.69fc18",
-        "name": "Rango Colores Temp",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "maxErgoTemp",
-                "vt": "global"
-            },
-            {
-                "t": "lte",
-                "v": "minErgoTemp",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 620,
-        "y": 240,
-        "wires": [
-            [
-                "d50c0a74.948748"
-            ],
-            [
-                "fc466192.5303c"
-            ],
-            [
-                "e06dd47a.d78198"
-            ]
-        ]
-    },
-    {
-        "id": "684351a0.537d6",
-        "type": "switch",
-        "z": "c38c08a9.69fc18",
-        "name": "Rango Colores Hum",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "maxErgoHum",
-                "vt": "global"
-            },
-            {
-                "t": "lte",
-                "v": "minErgoHum",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 620,
-        "y": 380,
-        "wires": [
-            [
-                "f4d5d5d2.080648"
-            ],
-            [
-                "6d299d80.333164"
-            ],
-            [
-                "262c0c5e.594cc4"
-            ]
-        ]
-    },
-    {
-        "id": "83d17a28.450228",
-        "type": "switch",
-        "z": "c38c08a9.69fc18",
-        "name": "Rango Colores UV",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "maxErgoUV",
-                "vt": "global"
-            },
-            {
-                "t": "lte",
-                "v": "minErgoUV",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 630,
-        "y": 520,
-        "wires": [
-            [
-                "5e93b82b.cd8568"
-            ],
-            [
-                "d46b5472.a8c458"
-            ],
-            [
-                "b3c60d01.449d2"
-            ]
-        ]
-    },
-    {
-        "id": "9004acf7.9de09",
-        "type": "switch",
-        "z": "c38c08a9.69fc18",
-        "name": "Rango Colores DB",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "maxErgoDB",
-                "vt": "global"
-            },
-            {
-                "t": "lte",
-                "v": "minErgoDB",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 630,
-        "y": 660,
-        "wires": [
-            [
-                "6dfe0215.38d2fc"
-            ],
-            [
-                "44ab8d47.039e14"
-            ],
-            [
-                "8a71d868.3f33c8"
             ]
         ]
     },
@@ -4316,411 +3486,6 @@
             ],
             [
                 "e06cda4d.6dc0c8"
-            ]
-        ]
-    },
-    {
-        "id": "6311f9b7.072c58",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorSobreLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorSobreLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 60,
-        "wires": [
-            [
-                "cf1084e7.c63fc8"
-            ]
-        ]
-    },
-    {
-        "id": "e702f358.7f6f4",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorEnRango",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 100,
-        "wires": [
-            [
-                "cf1084e7.c63fc8"
-            ]
-        ]
-    },
-    {
-        "id": "83a4719.49e539",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorBajoLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorBajoLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 140,
-        "wires": [
-            [
-                "cf1084e7.c63fc8"
-            ]
-        ]
-    },
-    {
-        "id": "d50c0a74.948748",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorSobreLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorSobreLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 200,
-        "wires": [
-            [
-                "a9d95b04.3d0408"
-            ]
-        ]
-    },
-    {
-        "id": "e06dd47a.d78198",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorEnRango",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 240,
-        "wires": [
-            [
-                "a9d95b04.3d0408"
-            ]
-        ]
-    },
-    {
-        "id": "fc466192.5303c",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorBajoLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorBajoLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 280,
-        "wires": [
-            [
-                "a9d95b04.3d0408"
-            ]
-        ]
-    },
-    {
-        "id": "f4d5d5d2.080648",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorSobreLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorSobreLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 340,
-        "wires": [
-            [
-                "eb663485.f59578"
-            ]
-        ]
-    },
-    {
-        "id": "262c0c5e.594cc4",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorEnRango",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 380,
-        "wires": [
-            [
-                "eb663485.f59578"
-            ]
-        ]
-    },
-    {
-        "id": "6d299d80.333164",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorBajoLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorBajoLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 420,
-        "wires": [
-            [
-                "eb663485.f59578"
-            ]
-        ]
-    },
-    {
-        "id": "5e93b82b.cd8568",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorSobreLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorSobreLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 480,
-        "wires": [
-            [
-                "af5486d0.32fe78"
-            ]
-        ]
-    },
-    {
-        "id": "b3c60d01.449d2",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorEnRango",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 520,
-        "wires": [
-            [
-                "af5486d0.32fe78"
-            ]
-        ]
-    },
-    {
-        "id": "d46b5472.a8c458",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorBajoLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorBajoLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 560,
-        "wires": [
-            [
-                "af5486d0.32fe78"
-            ]
-        ]
-    },
-    {
-        "id": "6dfe0215.38d2fc",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorSobreLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorSobreLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 620,
-        "wires": [
-            [
-                "5cccc12d.4d5a"
-            ]
-        ]
-    },
-    {
-        "id": "8a71d868.3f33c8",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorEnRango",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 660,
-        "wires": [
-            [
-                "5cccc12d.4d5a"
-            ]
-        ]
-    },
-    {
-        "id": "44ab8d47.039e14",
-        "type": "change",
-        "z": "c38c08a9.69fc18",
-        "name": "ColorBajoLimite",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ColorBajoLimite",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
-        "y": 700,
-        "wires": [
-            [
-                "5cccc12d.4d5a"
             ]
         ]
     },
@@ -4815,11 +3580,11 @@
             "c4a734cf.acb8c8",
             "f6c5a013.9c1f8"
         ],
-        "x": 475,
-        "y": 120,
+        "x": 315,
+        "y": 140,
         "wires": [
             [
-                "5fe8e85f.113468"
+                "106d3e65.04ef52"
             ]
         ]
     },
@@ -4833,11 +3598,11 @@
             "93ed252.04163d8",
             "193f6a50.8d5ae6"
         ],
-        "x": 475,
-        "y": 300,
+        "x": 315,
+        "y": 240,
         "wires": [
             [
-                "f8760a6b.964718"
+                "8bb947f7.73bc78"
             ]
         ]
     },
@@ -4851,11 +3616,11 @@
             "9b7a54ae.2c2f98",
             "5089a2d3.0f52ac"
         ],
-        "x": 475,
-        "y": 400,
+        "x": 315,
+        "y": 360,
         "wires": [
             [
-                "684351a0.537d6"
+                "bd7c1fb8.89dfd"
             ]
         ]
     },
@@ -4870,11 +3635,11 @@
             "12134501.9d02ab",
             "ad6b09d4.5b4e88"
         ],
-        "x": 475,
-        "y": 540,
+        "x": 315,
+        "y": 500,
         "wires": [
             [
-                "83d17a28.450228"
+                "72a8dd64.b2c0a4"
             ]
         ]
     },
@@ -4888,11 +3653,11 @@
             "fde8e4e9.057af8",
             "209ce585.3bd34a"
         ],
-        "x": 475,
-        "y": 680,
+        "x": 335,
+        "y": 660,
         "wires": [
             [
-                "9004acf7.9de09"
+                "e746b0c2.7ea09"
             ]
         ]
     },
@@ -4906,11 +3671,11 @@
             "5512bb76.7dc7f4",
             "2f67091d.60f986"
         ],
-        "x": 475,
-        "y": 820,
+        "x": 395,
+        "y": 920,
         "wires": [
             [
-                "28201678.c372ba"
+                "8c9e35fb.74cb58"
             ]
         ]
     },
@@ -4931,9 +3696,18 @@
         "type": "inject",
         "z": "cf4eb861.964c88",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "blue",
@@ -5832,7 +4606,7 @@
         "type": "debug",
         "z": "cf4eb861.964c88",
         "name": "LUX",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5930,7 +4704,7 @@
                 "1656bd16.ac13d3",
                 "ed5b5768.c798d8",
                 "c36172ea.32c34",
-                "7865be70.2e3e6"
+                "f8bfa01c.e1708"
             ]
         ]
     },
@@ -6061,8 +4835,8 @@
         "links": [
             "cf7159e1.54dd98"
         ],
-        "x": 1375,
-        "y": 100,
+        "x": 1355,
+        "y": 140,
         "wires": []
     },
     {
@@ -6424,25 +5198,6 @@
         ]
     },
     {
-        "id": "7865be70.2e3e6",
-        "type": "rbe",
-        "z": "f15c88c3.1d8bf8",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "property": "payload",
-        "x": 1075,
-        "y": 120,
-        "wires": [
-            [
-                "f8bfa01c.e1708"
-            ]
-        ],
-        "l": false
-    },
-    {
         "id": "6ea263dd.81d94c",
         "type": "rbe",
         "z": "f15c88c3.1d8bf8",
@@ -6493,7 +5248,7 @@
         "links": [
             "35c7c46d.079d7c"
         ],
-        "x": 1375,
+        "x": 1355,
         "y": 240,
         "wires": []
     },
@@ -6505,8 +5260,8 @@
         "links": [
             "671e37ae.a0a358"
         ],
-        "x": 1375,
-        "y": 380,
+        "x": 1355,
+        "y": 360,
         "wires": []
     },
     {
@@ -6517,8 +5272,8 @@
         "links": [
             "f8fc66a0.9ea338"
         ],
-        "x": 1375,
-        "y": 520,
+        "x": 1355,
+        "y": 500,
         "wires": []
     },
     {
@@ -6541,8 +5296,8 @@
         "links": [
             "8b89f55a.8197e8"
         ],
-        "x": 1375,
-        "y": 800,
+        "x": 1355,
+        "y": 920,
         "wires": []
     },
     {
@@ -6642,7 +5397,7 @@
         "type": "function",
         "z": "cf4eb861.964c88",
         "name": "NeoMedicion ",
-        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel()\nvar numDigitos = msg.numDig; //Dígitos por Neomedición\nvar NeoMedicionFloor = msg.NeoFloor;  //Dónde comienzan los pixeles de esta NeoMedición\n\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    //return \"200,255,200\";\n    return global.get('colorWHITE');\n  }\n  \n else {\n  WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n  }\n  \n  else if (WheelPos < 170)\n  {\n    WheelPos -= 85;\n    return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n  }\n  \n  else\n  {\n    WheelPos -= 170;\n    return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n  }\n}\n}\n\nreturn;",
+        "func": "var num = msg.payload;\nvar col = msg.col;  // color para Wheel()\nvar numDigitos = msg.numDig; //Dígitos por Neomedición\nvar NeoMedicionFloor = msg.NeoFloor;  //Dónde comienzan los pixeles de esta NeoMedición\n\n\nvar NeoMedicionRoof = NeoMedicionFloor + numDigitos*16 - 1;\nvar overflowNum = Math.pow(10, numDigitos); //¿A partir de qué número ya no se puede mostrar en la NeoMedicion?\n\nvar numbers = [\n  0b11101110,    // 0\n  0b10001000,    // 1\n  0b01111100,    // 2    5555\n  0b11011100,    // 3   6    4\n  0b10011010,    // 4    3333\n  0b11010110,    // 5   2    0\n  0b11110110,    // 6    1111\n  0b10001100,    // 7\n  0b11111110,    // 8\n  0b10011110    // 9\n];\n\nvar segmDia = [0,2,5,5,4,5,6,3,7,6,8,4,7,7,6,7,8,5,9,8,11,7,10,10,9,10,11,8,12,11,11,7];\n\nvar fitNum; //Se usa para ajustar la cantidad de cifras que se pueden mostrar\nvar show0s = 0;\n\nif(num >= overflowNum)\n{ //Recorta para sólo mostrar la cifra que cabe en el display\n    fitNum = Math.floor(num/overflowNum);\n    fitNum = fitNum*overflowNum;\n    num = num - fitNum;\n}\n\nmsg.payload = NeoMedicionFloor + \",\" + NeoMedicionRoof + \",0,0,0\"  //Esto apaga todos los neopixel de la NeoMedicion\nnode.send(msg);\nnum = PuntoDecimal(num);\ndisplayNDigitoss2LEDxSegmento(num, col)\n\nfunction displayNDigitoss2LEDxSegmento(h, col)\n{\n  var millares = Math.floor(h / 1000);\n  var centenas = Math.floor((h % 1000)/100);\n  var decenas = Math.floor(((h%1000)%100)/ 10);\n  var unidades = Math.floor(((h%1000)%100)%10);\n\n  //var j = numPixAnio + numPixMes + numPixFechas; //Para la posicion del neopixel.\n  var j = NeoMedicionFloor + 1;  //Para la posicion del neopixel (Comienza después del punto)\n  var i = 0;  //Para el segmento del neoDígito\n  var jTemp;\n  \n  if(numDigitos>=1)\n  {\n  // -------------------------------------------- unidades\n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if (numbers[unidades] & (1 << 7 - i))\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n        \n    }\n    \n    j=j+2;\n  }\n  }\n  \n  if(numDigitos>=2)\n  {\n  //-------------------------------------------- decenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[decenas] & (1 << 7 - i)) && ((decenas >= 1) || (centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    \n   j=j+2;\n  }\n }\n  \n  if(numDigitos>=3)\n  {\n // ---------------------------------------- centenas\n  j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n//  msg.payload = j;\n//  node.send(msg);\n  \n  for (i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[centenas] & (1 << 7 - i)) && ((centenas >= 1) || (millares >= 1) || msg.dondeDecimal > 0)) //el cero no se muestra\n    {\n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n    }\n    \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n  j=j+2;\n }\n }\n  \n  if(numDigitos>=4)\n  {\n //---------------------------------------- millares\n j = j + 2; //Para saltar los dos puntos y los 14 segmentos del dígito previo\n// msg.payload = j;\n// node.send(msg);\n \n  \n  for ( i = 0; i < 7; i++)\n  {\n      jTemp = j + 1;\n      \n    if ((numbers[millares] & (1 << 7 - i)) && ((millares >= 1) || msg.dondeDecimal > 0)) // Que sea diferente de cero\n      { \n        msg.payload = j + \",\" + Wheel(col);\n        node.send(msg);\n        msg.payload = jTemp + \",\" + Wheel(col);\n        node.send(msg);\n      }\n      \n    else\n    {\n        msg.payload = j + \",0,0,0\";\n        node.send(msg);\n        msg.payload = jTemp + \",0,0,0\";\n        node.send(msg);\n    }\n    j=j+2; //Posicion del Neopixel\n  }\n  }\n  \n  return;\n}\n\nfunction PuntoDecimal(num)\n{\n    var dondeDecimal = 0;\n    num = num.toString();\n    \n    for(var i = 0; i<num.length; i++)\n    {//Ojo, estamos asumiendo que no van a haber puntos en el primer lugar de la cadena. (P.e. \".1234\")\n     if(num[i] == \".\")\n     {\n        break; //Si halla el punto, se sale\n     }\n     else\n     {\n        dondeDecimal++; //Mientras no halle el punto, aumenta\n     }\n    }\n\n    if(dondeDecimal == num.length) \n    {\n        dondeDecimal = 0; //No hubo punto decimal en la cadena\n    }\n    else \n    {\n        //Acá encender el punto con el color indicado\n        msg.payload = (NeoMedicionFloor + 16*(numDigitos-dondeDecimal)) + \",\" + Wheel(col);\n        node.send(msg);\n        num = Math.floor(num * ((overflowNum/10) / (Math.pow(10, (dondeDecimal-1))))); //Recorre a la izquierda la cifra para hacerla \"entero\" para la siguiente función\n    } \n    \n    msg.dondeDecimal = dondeDecimal;\n    return num;\n    \n}\n\n\n//--- Input a value 0 to 255 to get a color value r - g - b - back to r\nfunction Wheel( WheelPos)\n{\n\n if (WheelPos == 0)\n  { //Para el color blanco\n    return \"200,255,200\";\n    //return global.get('colorWHITE');\n  }\n  \n else {\n  //WheelPos = 255 - WheelPos;\n  if (WheelPos < 85 && WheelPos >0 )\n  {\n    //return (255-WheelPos*3) + \",\" + 0 + \",\" + (WheelPos*3);\n    return \"0,255,0\";\n  }\n  \n  else if (WheelPos < 170)\n  {\n    //WheelPos -= 85;\n    //return  0 + \",\" + (WheelPos*3) + \",\" + (255-WheelPos*3);\n    return \"255,255,0\";\n  }\n  \n  else\n  {\n    //WheelPos -= 170;\n    //return (WheelPos*3) + \",\" + (255-WheelPos*3) + \",\" + 0;\n    return \"255,0,0\";\n  }\n}\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6661,13 +5416,6 @@
         "z": "cf4eb861.964c88",
         "name": "NeoConfig para PPM",
         "rules": [
-            {
-                "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colPPM",
-                "tot": "global"
-            },
             {
                 "t": "set",
                 "p": "numDig",
@@ -6705,13 +5453,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colLUX",
-                "tot": "global"
-            },
-            {
-                "t": "set",
                 "p": "numDig",
                 "pt": "msg",
                 "to": "4",
@@ -6747,13 +5488,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colDB",
-                "tot": "global"
-            },
-            {
-                "t": "set",
                 "p": "numDig",
                 "pt": "msg",
                 "to": "3",
@@ -6777,7 +5511,8 @@
         "wires": [
             [
                 "e23b4493.e73078",
-                "526a20c9.b2716"
+                "526a20c9.b2716",
+                "ec498feb.1eb14"
             ]
         ]
     },
@@ -6787,13 +5522,6 @@
         "z": "cf4eb861.964c88",
         "name": "NeoConfig para UV",
         "rules": [
-            {
-                "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colUV",
-                "tot": "global"
-            },
             {
                 "t": "set",
                 "p": "numDig",
@@ -6831,13 +5559,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colHum",
-                "tot": "global"
-            },
-            {
-                "t": "set",
                 "p": "numDig",
                 "pt": "msg",
                 "to": "2",
@@ -6862,48 +5583,6 @@
             [
                 "e23b4493.e73078",
                 "620f6669.9ffa58"
-            ]
-        ]
-    },
-    {
-        "id": "471e9447.a99aec",
-        "type": "change",
-        "z": "cf4eb861.964c88",
-        "name": "NeoConfig para TEM",
-        "rules": [
-            {
-                "t": "set",
-                "p": "col",
-                "pt": "msg",
-                "to": "colTemp",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "numDig",
-                "pt": "msg",
-                "to": "2",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "NeoFloor",
-                "pt": "msg",
-                "to": "240",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 600,
-        "y": 100,
-        "wires": [
-            [
-                "e23b4493.e73078",
-                "2225f5b6.e1854a"
             ]
         ]
     },
@@ -7195,6 +5874,183 @@
         "wires": [
             [
                 "89bb9876.262388"
+            ]
+        ]
+    },
+    {
+        "id": "8bb947f7.73bc78",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores Temp",
+        "func": "var temp = msg.payload\n//var maxErgoTemp = global.get('maxErgoTemp')\n\nif((temp >= 18) && (temp <= 25))\n{\n   msg.col = 80 // Color verde \n}\n\nelse if((temp >= 26) && (temp < 30))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "235f557c.d293ea"
+            ]
+        ]
+    },
+    {
+        "id": "3c61430a.f9ae7c",
+        "type": "change",
+        "z": "cf4eb861.964c88",
+        "name": "NeoConfig para TEM",
+        "rules": [
+            {
+                "t": "set",
+                "p": "numDig",
+                "pt": "msg",
+                "to": "2",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "NeoFloor",
+                "pt": "msg",
+                "to": "240",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 100,
+        "wires": [
+            [
+                "e23b4493.e73078",
+                "2225f5b6.e1854a"
+            ]
+        ]
+    },
+    {
+        "id": "bd7c1fb8.89dfd",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores Humedad",
+        "func": "var hum = msg.payload\n//var maxErgoTemp = global.get('maxErgoTemp')\n\nif((hum >= 40) && (hum <= 70))\n{\n   msg.col = 80 // Color verde \n}\n\nelse if((hum >= 36) && (hum < 40))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 360,
+        "wires": [
+            [
+                "dbdf8f.446c807"
+            ]
+        ]
+    },
+    {
+        "id": "106d3e65.04ef52",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores Lux",
+        "func": "var lux = msg.payload\n\nif((lux >= 450) && (lux <= 750))\n{\n   msg.col = 80 // Color verde \n}\n\nelse if(((lux >= 401) && (lux <= 449)) || ((lux >= 751) && (lux <= 799)))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 140,
+        "wires": [
+            [
+                "483c8c74.134a04"
+            ]
+        ]
+    },
+    {
+        "id": "ec498feb.1eb14",
+        "type": "debug",
+        "z": "cf4eb861.964c88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "e746b0c2.7ea09",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores DB",
+        "func": "var db = msg.payload\n\nif(db <= 75)\n{\n   msg.col = 80 // Color verde \n}\n\nelse if((db > 76) && (db < 79))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 660,
+        "wires": [
+            [
+                "bedea034.18a55"
+            ]
+        ]
+    },
+    {
+        "id": "72a8dd64.b2c0a4",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores UV",
+        "func": "var uv = msg.payload\n\nif(uv <= 2)\n{\n   msg.col = 80 // Color verde \n}\n\nelse if((uv >= 3) && (uv <= 7))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 500,
+        "wires": [
+            [
+                "705d30a8.42f9f"
+            ]
+        ]
+    },
+    {
+        "id": "bc400bd2.bd3ba8",
+        "type": "rbe",
+        "z": "f15c88c3.1d8bf8",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 1075,
+        "y": 120,
+        "wires": [
+            []
+        ],
+        "l": false
+    },
+    {
+        "id": "8c9e35fb.74cb58",
+        "type": "function",
+        "z": "c38c08a9.69fc18",
+        "name": "Colores PPM",
+        "func": "var ppm = msg.payload\n\nif(ppm <= 400)\n{\n   msg.col = 80 // Color verde \n}\n\nelse if((ppm >= 401) && (db < 1000))\n{\n    msg.col = 120; // Amarillo\n}\n\nelse\n{\n    msg.col = 180; // Rojo\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 920,
+        "wires": [
+            [
+                "962f6f64.c20ed"
             ]
         ]
     }

@@ -3,6 +3,8 @@
 # Se obtienen lecturas del sensor DHT22 cada 2 segundos aproximadamente
 
 # Importar módulos
+import json
+import time
 import Adafruit_DHT
 
 # Objetos
@@ -13,6 +15,7 @@ data = {} #diccionario vacío
 # Lecturas ==========================================
 
 while (True):
+  time.sleep(2.0) #esperar
   # Leer DHT22 ----------------------------------------
   humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
   # valor cero en caso de error
@@ -25,6 +28,4 @@ while (True):
     "humidity": humidity,
     "temperature": temperature
   }
-
   print(json.dumps(data)) #exportar datos
-  time.sleep(2.0) #esperar antes del siguiente loop

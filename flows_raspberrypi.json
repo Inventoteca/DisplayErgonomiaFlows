@@ -2312,7 +2312,7 @@
         "type": "debug",
         "z": "f15c88c3.1d8bf8",
         "name": "ppm",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5194,8 +5194,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 830,
-        "y": 200,
+        "x": 1010,
+        "y": 400,
         "wires": [
             [
                 "7f666424.615afc"
@@ -5232,8 +5232,8 @@
         "y": 300,
         "wires": [
             [
-                "e23b4493.e73078",
-                "e3c527a5.beb328"
+                "e3c527a5.beb328",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5267,8 +5267,8 @@
         "y": 260,
         "wires": [
             [
-                "e23b4493.e73078",
-                "b63ab9ec.655108"
+                "b63ab9ec.655108",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5302,8 +5302,8 @@
         "y": 220,
         "wires": [
             [
-                "e23b4493.e73078",
-                "526a20c9.b2716"
+                "526a20c9.b2716",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5337,8 +5337,8 @@
         "y": 180,
         "wires": [
             [
-                "e23b4493.e73078",
-                "9b2b3af7.a74638"
+                "9b2b3af7.a74638",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5372,8 +5372,8 @@
         "y": 140,
         "wires": [
             [
-                "e23b4493.e73078",
-                "620f6669.9ffa58"
+                "620f6669.9ffa58",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5612,10 +5612,10 @@
         "name": "",
         "property": "payload",
         "action": "mean",
-        "count": "1",
+        "count": "10",
         "round": "0",
         "mult": "single",
-        "reduce": false,
+        "reduce": true,
         "x": 780,
         "y": 820,
         "wires": [
@@ -5635,7 +5635,7 @@
         "count": "10",
         "round": "0",
         "mult": "single",
-        "reduce": false,
+        "reduce": true,
         "x": 780,
         "y": 960,
         "wires": [
@@ -5716,8 +5716,8 @@
         "y": 100,
         "wires": [
             [
-                "e23b4493.e73078",
-                "2225f5b6.e1854a"
+                "2225f5b6.e1854a",
+                "5318fb3d.005134"
             ]
         ]
     },
@@ -5826,6 +5826,33 @@
         "wires": [
             [
                 "f8bfa01c.e1708"
+            ]
+        ]
+    },
+    {
+        "id": "5318fb3d.005134",
+        "type": "change",
+        "z": "cf4eb861.964c88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "col",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "e23b4493.e73078"
             ]
         ]
     }

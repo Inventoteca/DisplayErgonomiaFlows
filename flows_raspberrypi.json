@@ -186,7 +186,7 @@
         "type": "ui_group",
         "name": "Temparatura y humedad",
         "tab": "5d2a389b.943628",
-        "order": 3,
+        "order": 1,
         "disp": true,
         "width": "5",
         "collapse": false
@@ -659,122 +659,6 @@
         "wires": []
     },
     {
-        "id": "1e8d02e9.36e05d",
-        "type": "ui_chart",
-        "z": "346374ca.eee81c",
-        "name": "GraficaTemp",
-        "group": "e930afe6.376a6",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 790,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "11a5760.8ee598a",
-        "type": "ui_chart",
-        "z": "346374ca.eee81c",
-        "name": "GraficaHum",
-        "group": "e930afe6.376a6",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 790,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "dc302b2f.008268",
-        "type": "ui_text",
-        "z": "346374ca.eee81c",
-        "group": "e930afe6.376a6",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Temperatura",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 790,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "d6034ded.a20ca",
-        "type": "ui_text",
-        "z": "346374ca.eee81c",
-        "group": "e930afe6.376a6",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Humedad",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 780,
-        "y": 400,
-        "wires": []
-    },
-    {
         "id": "c2887d4d.d3a45",
         "type": "change",
         "z": "346374ca.eee81c",
@@ -796,10 +680,7 @@
         "x": 600,
         "y": 320,
         "wires": [
-            [
-                "1e8d02e9.36e05d",
-                "dc302b2f.008268"
-            ]
+            []
         ]
     },
     {
@@ -824,10 +705,7 @@
         "x": 600,
         "y": 360,
         "wires": [
-            [
-                "11a5760.8ee598a",
-                "d6034ded.a20ca"
-            ]
+            []
         ]
     },
     {
@@ -1201,115 +1079,41 @@
         "z": "f15c88c3.1d8bf8",
         "name": "GraficaTemp",
         "group": "e930afe6.376a6",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 970,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4f57bcf6.c07214",
-        "type": "ui_chart",
-        "z": "f15c88c3.1d8bf8",
-        "name": "GraficaHum",
-        "group": "e930afe6.376a6",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 950,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ed5b5768.c798d8",
-        "type": "ui_text",
-        "z": "f15c88c3.1d8bf8",
-        "group": "e930afe6.376a6",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "ºC",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 970,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "8b622653.51d7b8",
-        "type": "ui_text",
-        "z": "f15c88c3.1d8bf8",
-        "group": "e930afe6.376a6",
         "order": 3,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Humedad",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 960,
-        "y": 360,
-        "wires": []
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 200,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "f7bfa123.1606a",
@@ -1323,6 +1127,13 @@
                 "pt": "msg",
                 "to": "payload.dht.temperature",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Temperatura",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -1350,6 +1161,13 @@
                 "pt": "msg",
                 "to": "payload.dht.humidity",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Humedad",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -4488,14 +4306,14 @@
         "count": "3",
         "round": "0",
         "mult": "single",
-        "reduce": false,
+        "reduce": true,
         "x": 800,
         "y": 120,
         "wires": [
             [
-                "ed5b5768.c798d8",
                 "1656bd16.ac13d3",
-                "7a1eaf08.39ce1"
+                "7a1eaf08.39ce1",
+                "69af950.d20f56c"
             ]
         ]
     },
@@ -4506,18 +4324,18 @@
         "name": "",
         "property": "payload",
         "action": "mean",
-        "count": "1",
+        "count": "3",
         "round": "0",
         "mult": "single",
-        "reduce": false,
-        "x": 800,
+        "reduce": true,
+        "x": 780,
         "y": 300,
         "wires": [
             [
-                "4f57bcf6.c07214",
-                "8b622653.51d7b8",
                 "9b31a9b4.06a368",
-                "6ea263dd.81d94c"
+                "6ea263dd.81d94c",
+                "1656bd16.ac13d3",
+                "cb6cce24.a4347"
             ]
         ]
     },
@@ -5821,8 +5639,8 @@
         "start": "",
         "inout": "out",
         "property": "payload",
-        "x": 1050,
-        "y": 100,
+        "x": 950,
+        "y": 120,
         "wires": [
             [
                 "f8bfa01c.e1708"
@@ -5855,5 +5673,57 @@
                 "e23b4493.e73078"
             ]
         ]
+    },
+    {
+        "id": "69af950.d20f56c",
+        "type": "ui_gauge",
+        "z": "f15c88c3.1d8bf8",
+        "name": "",
+        "group": "e930afe6.376a6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 970,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cb6cce24.a4347",
+        "type": "ui_gauge",
+        "z": "f15c88c3.1d8bf8",
+        "name": "",
+        "group": "e930afe6.376a6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Humedad",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 960,
+        "y": 240,
+        "wires": []
     }
 ]

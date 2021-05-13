@@ -1567,7 +1567,7 @@
         "outs": "all",
         "topic": "",
         "min": 0,
-        "max": "255",
+        "max": "254",
         "step": 1,
         "x": 150,
         "y": 220,
@@ -1592,7 +1592,7 @@
         "outs": "all",
         "topic": "",
         "min": 0,
-        "max": "255",
+        "max": "254",
         "step": 1,
         "x": 140,
         "y": 180,
@@ -1617,7 +1617,7 @@
         "outs": "all",
         "topic": "",
         "min": 0,
-        "max": "255",
+        "max": "254",
         "step": 1,
         "x": 150,
         "y": 260,
@@ -2363,11 +2363,11 @@
             "1a7f1500.a33a7b",
             "b1aa92b3.9f567"
         ],
-        "x": 1135,
-        "y": 540,
+        "x": 1215,
+        "y": 200,
         "wires": [
             [
-                "7f666424.615afc"
+                "89bb9876.262388"
             ]
         ]
     },
@@ -6651,7 +6651,7 @@
         "y": 200,
         "wires": [
             [
-                "7f666424.615afc"
+                "89bb9876.262388"
             ]
         ]
     },
@@ -7039,7 +7039,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "200,200,242",
+        "payload": "100,100,115",
         "payloadType": "str",
         "x": 190,
         "y": 300,
@@ -7172,29 +7172,6 @@
             [
                 "6cad0db4.4c1c84",
                 "ba2c3833.0ee4f8"
-            ]
-        ]
-    },
-    {
-        "id": "7f666424.615afc",
-        "type": "delay",
-        "z": "cf4eb861.964c88",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "250",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1260,
-        "y": 200,
-        "wires": [
-            [
-                "89bb9876.262388"
             ]
         ]
     }

@@ -2219,7 +2219,8 @@
         "z": "7f137852.8b9328",
         "name": "sistema-reiniciar",
         "links": [
-            "6a520e15.ac8b1"
+            "6a520e15.ac8b1",
+            "3fef1992.0aabb6"
         ],
         "x": 735,
         "y": 140,
@@ -2265,7 +2266,8 @@
         "name": "sistema-apagar",
         "links": [
             "b30fea42.8f09c8",
-            "cdf0abde.c1eb28"
+            "cdf0abde.c1eb28",
+            "814cc8d0.e42f98"
         ],
         "x": 735,
         "y": 191.25000190734863,
@@ -2307,7 +2309,8 @@
         "z": "7f137852.8b9328",
         "name": "from-ui-apagar",
         "links": [
-            "91bf57d9.5736c8"
+            "91bf57d9.5736c8",
+            "91876530.101f28"
         ],
         "x": 415,
         "y": 140,
@@ -2377,7 +2380,8 @@
         "z": "7f137852.8b9328",
         "name": "from-ui-reiniciar",
         "links": [
-            "cb98fd1d.23657"
+            "cb98fd1d.23657",
+            "251b557b.e61f7a"
         ],
         "x": 415,
         "y": 180,
@@ -7599,6 +7603,26 @@
             [
                 "e97c7c4b.9868b"
             ]
+        ]
+    },
+    {
+        "id": "7d03a844.69a068",
+        "type": "ui_toast",
+        "z": "af48f45.b140f08",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 450,
+        "y": 340,
+        "wires": [
+            []
         ]
     }
 ]

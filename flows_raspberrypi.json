@@ -424,7 +424,8 @@
         "y": 120,
         "wires": [
             [
-                "2e341ec6.508162"
+                "2e341ec6.508162",
+                "419a9c32.b9f944"
             ]
         ]
     },
@@ -5442,8 +5443,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromLUXMedicion",
         "links": [
-            "200580c3.d5c42",
-            "d874026d.aa25"
+            "200580c3.d5c42"
         ],
         "x": 1475,
         "y": 480,
@@ -5455,8 +5455,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromTemMedicion",
         "links": [
-            "368e7783.a36588",
-            "2329c031.f25de"
+            "368e7783.a36588"
         ],
         "x": 1475,
         "y": 120,
@@ -5468,11 +5467,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromHUMMedicion",
         "links": [
-            "e0de2691.ad3918",
-            "4a7d6b19.e3e4a4",
-            "fcf2e33.79d542",
-            "7cfc410f.a2eb4",
-            "95fabb10.1ead38"
+            "fcf2e33.79d542"
         ],
         "x": 1475,
         "y": 300,
@@ -5484,10 +5479,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromVoltsUVMedicion",
         "links": [
-            "2d48cc28.e5c9a4",
-            "d26fc708.005768",
-            "6c39f5de.2139bc",
-            "d9c42bf7.3df2a8"
+            "2d48cc28.e5c9a4"
         ],
         "x": 1475,
         "y": 640,
@@ -5499,11 +5491,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensDBMedicion",
         "links": [
-            "d4560aad.75f138",
-            "84f80fcc.84467",
-            "8fcee55b.025d28",
-            "7f9962df.3a237c",
-            "4e91fdc9.166e14"
+            "8fcee55b.025d28"
         ],
         "x": 1475,
         "y": 800,
@@ -5515,10 +5503,7 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensPPMMedicion",
         "links": [
-            "2e017f19.e00c9",
-            "ea737b8d.8e5c58",
-            "1e61e61c.648fba",
-            "ea0686db.9dce28"
+            "2e017f19.e00c9"
         ],
         "x": 1475,
         "y": 960,
@@ -6338,7 +6323,8 @@
         "y": 480,
         "wires": [
             [
-                "a99917c4.71daa8"
+                "a99917c4.71daa8",
+                "4869765c.d270b8"
             ]
         ]
     },
@@ -6466,7 +6452,8 @@
         "y": 640,
         "wires": [
             [
-                "3ccadf86.a180d"
+                "3ccadf86.a180d",
+                "81413a7b.839468"
             ]
         ]
     },
@@ -6500,7 +6487,8 @@
         "y": 800,
         "wires": [
             [
-                "3979279e.890178"
+                "3979279e.890178",
+                "8533e7b1.3715d8"
             ]
         ]
     },
@@ -6527,7 +6515,8 @@
         "y": 960,
         "wires": [
             [
-                "59e5cad5.bfdcc4"
+                "59e5cad5.bfdcc4",
+                "9e493a9b.dd0998"
             ]
         ]
     },
@@ -6561,7 +6550,8 @@
         "y": 300,
         "wires": [
             [
-                "d7325b33.6bd1a8"
+                "d7325b33.6bd1a8",
+                "722cf8f8.4bffe8"
             ]
         ]
     },
@@ -7170,9 +7160,9 @@
         "id": "2329c031.f25de",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-temp",
         "links": [
-            "193f6a50.8d5ae6"
+            "419a9c32.b9f944"
         ],
         "x": 215,
         "y": 200,
@@ -7225,9 +7215,9 @@
         "id": "95fabb10.1ead38",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-hum",
         "links": [
-            "5089a2d3.0f52ac"
+            "722cf8f8.4bffe8"
         ],
         "x": 215,
         "y": 260,
@@ -7273,9 +7263,9 @@
         "id": "d9c42bf7.3df2a8",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-uv",
         "links": [
-            "ad6b09d4.5b4e88"
+            "81413a7b.839468"
         ],
         "x": 215,
         "y": 320,
@@ -7309,7 +7299,7 @@
         "type": "debug",
         "z": "d0f801d.0d00a",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7366,9 +7356,9 @@
         "id": "4e91fdc9.166e14",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-db",
         "links": [
-            "209ce585.3bd34a"
+            "8533e7b1.3715d8"
         ],
         "x": 215,
         "y": 380,
@@ -7400,9 +7390,9 @@
         "id": "d874026d.aa25",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-lux",
         "links": [
-            "f6c5a013.9c1f8"
+            "4869765c.d270b8"
         ],
         "x": 215,
         "y": 440,
@@ -7434,9 +7424,9 @@
         "id": "ea0686db.9dce28",
         "type": "link in",
         "z": "d0f801d.0d00a",
-        "name": "chat+mqtt-vapri",
+        "name": "to-mqtt-ppm",
         "links": [
-            "2f67091d.60f986"
+            "9e493a9b.dd0998"
         ],
         "x": 215,
         "y": 500,
@@ -7624,5 +7614,77 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "4869765c.d270b8",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromLUXMedicion",
+        "links": [
+            "d874026d.aa25"
+        ],
+        "x": 755,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "419a9c32.b9f944",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromTemMedicion",
+        "links": [
+            "2329c031.f25de"
+        ],
+        "x": 755,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "722cf8f8.4bffe8",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromHUMMedicion",
+        "links": [
+            "95fabb10.1ead38"
+        ],
+        "x": 755,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "81413a7b.839468",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromRAWVoltsUVMedicion",
+        "links": [
+            "d9c42bf7.3df2a8"
+        ],
+        "x": 755,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "8533e7b1.3715d8",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromRAWIntensDBMedicion",
+        "links": [
+            "4e91fdc9.166e14"
+        ],
+        "x": 755,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "9e493a9b.dd0998",
+        "type": "link out",
+        "z": "f15c88c3.1d8bf8",
+        "name": "fromRAWIntensPPMMedicion",
+        "links": [
+            "ea0686db.9dce28"
+        ],
+        "x": 755,
+        "y": 1000,
+        "wires": []
     }
 ]

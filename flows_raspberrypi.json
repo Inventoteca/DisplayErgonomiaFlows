@@ -5439,7 +5439,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromLUXMedicion",
         "links": [
-            "200580c3.d5c42"
+            "200580c3.d5c42",
+            "d874026d.aa25"
         ],
         "x": 1475,
         "y": 480,
@@ -5498,7 +5499,8 @@
             "d4560aad.75f138",
             "84f80fcc.84467",
             "8fcee55b.025d28",
-            "7f9962df.3a237c"
+            "7f9962df.3a237c",
+            "4e91fdc9.166e14"
         ],
         "x": 1475,
         "y": 800,
@@ -5512,7 +5514,8 @@
         "links": [
             "2e017f19.e00c9",
             "ea737b8d.8e5c58",
-            "1e61e61c.648fba"
+            "1e61e61c.648fba",
+            "ea0686db.9dce28"
         ],
         "x": 1475,
         "y": 960,
@@ -7166,7 +7169,7 @@
             "193f6a50.8d5ae6"
         ],
         "x": 215,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "9a8ced22.26a49"
@@ -7188,13 +7191,13 @@
         "type": "function",
         "z": "d0f801d.0d00a",
         "name": "DisplayErgonomia/SerialNo/temp'",
-        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/temp'\n\nreturn msg;",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/temp'\n//msg.topic = 'DisplayErgonomia/0/temp'\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "x": 400,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "d4bf316a.0f397",
@@ -7221,7 +7224,7 @@
             "5089a2d3.0f52ac"
         ],
         "x": 215,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "fe0f2f65.61eaf"
@@ -7239,7 +7242,7 @@
         "initialize": "",
         "finalize": "",
         "x": 400,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "d4bf316a.0f397",
@@ -7257,7 +7260,7 @@
         "retain": "",
         "broker": "8714eca8.27de2",
         "x": 670,
-        "y": 280,
+        "y": 340,
         "wires": []
     },
     {
@@ -7269,7 +7272,7 @@
             "ad6b09d4.5b4e88"
         ],
         "x": 215,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "582cbee.1157f4"
@@ -7286,8 +7289,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 390,
-        "y": 280,
+        "x": 410,
+        "y": 320,
         "wires": [
             [
                 "1fc4757d.52af4b",
@@ -7300,15 +7303,16 @@
         "type": "debug",
         "z": "d0f801d.0d00a",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
-        "y": 200,
+        "x": 670,
+        "y": 240,
         "wires": []
     },
     {
@@ -7326,7 +7330,7 @@
         "type": "mqtt in",
         "z": "d0f801d.0d00a",
         "name": "",
-        "topic": "DisplayErgonomia/0/tester'",
+        "topic": "DisplayErgonomia/0/tester",
         "qos": "2",
         "datatype": "auto",
         "broker": "8714eca8.27de2",
@@ -7348,7 +7352,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1210,
+        "x": 1150,
         "y": 200,
         "wires": []
     },
@@ -7357,9 +7361,11 @@
         "type": "link in",
         "z": "d0f801d.0d00a",
         "name": "chat+mqtt-vapri",
-        "links": [],
+        "links": [
+            "209ce585.3bd34a"
+        ],
         "x": 215,
-        "y": 340,
+        "y": 380,
         "wires": [
             [
                 "bb37b39d.8dbfc"
@@ -7370,14 +7376,14 @@
         "id": "bb37b39d.8dbfc",
         "type": "function",
         "z": "d0f801d.0d00a",
-        "name": "DisplayErgonomia/SerialNo/'",
-        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "name": "DisplayErgonomia/SerialNo/db'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/db'\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 380,
-        "y": 340,
+        "x": 410,
+        "y": 380,
         "wires": [
             [
                 "1fc4757d.52af4b"
@@ -7389,9 +7395,11 @@
         "type": "link in",
         "z": "d0f801d.0d00a",
         "name": "chat+mqtt-vapri",
-        "links": [],
+        "links": [
+            "f6c5a013.9c1f8"
+        ],
         "x": 215,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "5fb12d1e.1512f4"
@@ -7402,16 +7410,18 @@
         "id": "5fb12d1e.1512f4",
         "type": "function",
         "z": "d0f801d.0d00a",
-        "name": "DisplayErgonomia/SerialNo/'",
-        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "name": "DisplayErgonomia/SerialNo/lux'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/lux'\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 380,
-        "y": 400,
+        "x": 410,
+        "y": 440,
         "wires": [
-            []
+            [
+                "1fc4757d.52af4b"
+            ]
         ]
     },
     {
@@ -7419,9 +7429,11 @@
         "type": "link in",
         "z": "d0f801d.0d00a",
         "name": "chat+mqtt-vapri",
-        "links": [],
+        "links": [
+            "2f67091d.60f986"
+        ],
         "x": 215,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "9cbca052.79e64"
@@ -7432,16 +7444,28 @@
         "id": "9cbca052.79e64",
         "type": "function",
         "z": "d0f801d.0d00a",
-        "name": "DisplayErgonomia/SerialNo/'",
-        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "name": "DisplayErgonomia/SerialNo/ppm'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/ppm'\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 380,
-        "y": 460,
+        "x": 400,
+        "y": 500,
         "wires": [
-            []
+            [
+                "1fc4757d.52af4b"
+            ]
         ]
+    },
+    {
+        "id": "88148fe0.ace44",
+        "type": "comment",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/0/temp",
+        "info": "",
+        "x": 310,
+        "y": 140,
+        "wires": []
     }
 ]

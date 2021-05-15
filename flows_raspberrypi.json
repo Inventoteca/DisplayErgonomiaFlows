@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "9db9e4d5.033558",
+        "type": "tab",
+        "label": "Registro de datos",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "cf4eb861.964c88",
         "type": "tab",
         "label": "Salida NeoDígitos",
@@ -23,7 +30,7 @@
     {
         "id": "af48f45.b140f08",
         "type": "tab",
-        "label": "Setup Límites",
+        "label": "Setup Colores Límites",
         "disabled": false,
         "info": ""
     },
@@ -45,6 +52,13 @@
         "id": "2de0f07d.fb2df",
         "type": "tab",
         "label": "Telegram",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d0f801d.0d00a",
+        "type": "tab",
+        "label": "MQTT",
         "disabled": false,
         "info": ""
     },
@@ -279,6 +293,27 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "8714eca8.27de2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "iot.inventoteca.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "89bb9876.262388",
@@ -3998,12 +4033,9 @@
         "id": "c4a734cf.acb8c8",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromLUXMedicion",
+        "name": "tester4",
         "links": [
-            "eb213b73.3b0638",
-            "dd11de36.7610b",
-            "200580c3.d5c42",
-            "5708326.a2e64cc"
+            "200580c3.d5c42"
         ],
         "x": 335,
         "y": 600,
@@ -4013,12 +4045,9 @@
         "id": "93ed252.04163d8",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromTemMedicion",
+        "name": "tester1",
         "links": [
-            "9cd65b44.ed8698",
-            "1bfbe753.4e36b9",
-            "368e7783.a36588",
-            "fe034c6c.46824"
+            "368e7783.a36588"
         ],
         "x": 335,
         "y": 440,
@@ -4028,12 +4057,9 @@
         "id": "9b7a54ae.2c2f98",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromHUMMedicion",
+        "name": "tester2",
         "links": [
-            "e0de2691.ad3918",
-            "4a7d6b19.e3e4a4",
-            "fcf2e33.79d542",
-            "7cfc410f.a2eb4"
+            "fcf2e33.79d542"
         ],
         "x": 335,
         "y": 480,
@@ -4043,11 +4069,9 @@
         "id": "12134501.9d02ab",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromVoltsUVMedicion",
+        "name": "tester3",
         "links": [
-            "d26fc708.005768",
-            "2d48cc28.e5c9a4",
-            "6c39f5de.2139bc"
+            "2d48cc28.e5c9a4"
         ],
         "x": 335,
         "y": 520,
@@ -4057,12 +4081,9 @@
         "id": "fde8e4e9.057af8",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromIntensDBMedicion",
+        "name": "tester4",
         "links": [
-            "d4560aad.75f138",
-            "84f80fcc.84467",
-            "8fcee55b.025d28",
-            "7f9962df.3a237c"
+            "8fcee55b.025d28"
         ],
         "x": 335,
         "y": 560,
@@ -4072,12 +4093,9 @@
         "id": "5512bb76.7dc7f4",
         "type": "link out",
         "z": "cf4eb861.964c88",
-        "name": "fromIntensPPMMedicion",
+        "name": "tester5",
         "links": [
-            "8fd33e10.8a46b",
-            "ea737b8d.8e5c58",
-            "2e017f19.e00c9",
-            "1e61e61c.648fba"
+            "2e017f19.e00c9"
         ],
         "x": 335,
         "y": 640,
@@ -5433,7 +5451,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromTemMedicion",
         "links": [
-            "368e7783.a36588"
+            "368e7783.a36588",
+            "2329c031.f25de"
         ],
         "x": 1475,
         "y": 120,
@@ -5448,7 +5467,8 @@
             "e0de2691.ad3918",
             "4a7d6b19.e3e4a4",
             "fcf2e33.79d542",
-            "7cfc410f.a2eb4"
+            "7cfc410f.a2eb4",
+            "95fabb10.1ead38"
         ],
         "x": 1475,
         "y": 300,
@@ -5462,7 +5482,8 @@
         "links": [
             "2d48cc28.e5c9a4",
             "d26fc708.005768",
-            "6c39f5de.2139bc"
+            "6c39f5de.2139bc",
+            "d9c42bf7.3df2a8"
         ],
         "x": 1475,
         "y": 640,
@@ -6551,5 +6572,876 @@
             []
         ],
         "l": false
+    },
+    {
+        "id": "c6114229.6db0d",
+        "type": "comment",
+        "z": "9db9e4d5.033558",
+        "name": "Registra las mediciones a partir de los valores Current cada minuto.",
+        "info": "",
+        "x": 280,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "347bea72.4f4776",
+        "type": "function",
+        "z": "9db9e4d5.033558",
+        "name": "Set data",
+        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\nvar time = new Date().getTime();\nvar date = new Date(time); // create Date object\n\nmsg.payload = {\n    \"timestamp\" : date,\n    \"Temperatura\" : temp,\n    \"Humedad\" : hum,\n    \"UV\" : UV,\n    \"dB\" : DB,\n    \"Lux Index\" : lux,\n    \"PPM\" : PPM,\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 260,
+        "y": 200,
+        "wires": [
+            [
+                "a1b6f4a8.169488"
+            ]
+        ]
+    },
+    {
+        "id": "a1b6f4a8.169488",
+        "type": "function",
+        "z": "9db9e4d5.033558",
+        "name": "Filename generator",
+        "func": "// Get the current time and convert it to text\nvar now = new Date();\nvar yyyy = now.getFullYear();\nvar mm = now.getMonth() < 9 ? \"0\" + (now.getMonth() + 1) : (now.getMonth() + 1); // getMonth() is zero-based\nvar dd  = now.getDate() < 10 ? \"0\" + now.getDate() : now.getDate();\nvar hh = now.getHours() < 10 ? \"0\" + now.getHours() : now.getHours();\nvar mmm  = now.getMinutes() < 10 ? \"0\" + now.getMinutes() : now.getMinutes();\nvar ss  = now.getSeconds() < 10 ? \"0\" + now.getSeconds() : now.getSeconds();\n\n// Generate out file name pattern\nmsg.fname = \"displayErgonomia_\"+ yyyy + mm + dd + \".csv\";\n// Full filename with path for the file node later\nmsg.filename = \"/home/pi/datalog/\"+ msg.fname;\n//msg.filename = \"D:/OneDrive/Documentos/BUAP/8 Semestre/Proyectos I+D/Proyecto Final Access Mask/\"+ msg.fname;\n\n// We save the current payload into a different place on the msg object\nmsg.filecontent = msg.payload;\n\n// We are passing the file name search pattern to fs node to tell us if the file exists or not\nmsg.payload = {\"pattern\":msg.fname};\n\nnode.status({fill:\"blue\",shape:\"ring\",text:msg.fname});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "f5ef08c0.4ecaa8",
+                "bb58d215.ab7bb"
+            ]
+        ]
+    },
+    {
+        "id": "4f540638.161a78",
+        "type": "switch",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "property": "$count(msg.payload)",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 770,
+        "y": 200,
+        "wires": [
+            [
+                "317303b8.e168fc"
+            ],
+            [
+                "5ef6b771.b073b8"
+            ]
+        ]
+    },
+    {
+        "id": "8c4268c4.b2d1d8",
+        "type": "csv",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp,temperature,humidity",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 1110,
+        "y": 180,
+        "wires": [
+            [
+                "3a7869f3.a254e6"
+            ]
+        ]
+    },
+    {
+        "id": "3a7869f3.a254e6",
+        "type": "file",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1270,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d70272c2.994f5",
+        "type": "csv",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp,temperature,humidity",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 1110,
+        "y": 220,
+        "wires": [
+            [
+                "3a7869f3.a254e6"
+            ]
+        ]
+    },
+    {
+        "id": "317303b8.e168fc",
+        "type": "change",
+        "z": "9db9e4d5.033558",
+        "name": "Get file content",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "filecontent",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 180,
+        "wires": [
+            [
+                "8c4268c4.b2d1d8"
+            ]
+        ]
+    },
+    {
+        "id": "5ef6b771.b073b8",
+        "type": "change",
+        "z": "9db9e4d5.033558",
+        "name": "Get file content",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "filecontent",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 220,
+        "wires": [
+            [
+                "d70272c2.994f5"
+            ]
+        ]
+    },
+    {
+        "id": "f5ef08c0.4ecaa8",
+        "type": "fs-file-lister",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "start": "/home/pi/datalog/",
+        "pattern": "",
+        "folders": "*",
+        "hidden": true,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 620,
+        "y": 180,
+        "wires": [
+            [
+                "4f540638.161a78",
+                "9b0461d9.f59de"
+            ]
+        ]
+    },
+    {
+        "id": "bb58d215.ab7bb",
+        "type": "fs-file-lister",
+        "z": "9db9e4d5.033558",
+        "d": true,
+        "name": "",
+        "start": "D:\\OneDrive\\Documentos\\BUAP\\8 Semestre\\Proyectos I+D\\Proyecto Final Access Mask",
+        "pattern": "",
+        "folders": "*",
+        "hidden": true,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 620,
+        "y": 220,
+        "wires": [
+            [
+                "4f540638.161a78",
+                "9b0461d9.f59de"
+            ]
+        ]
+    },
+    {
+        "id": "92e070a1.d755",
+        "type": "inject",
+        "z": "9db9e4d5.033558",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "347bea72.4f4776"
+            ]
+        ]
+    },
+    {
+        "id": "9b0461d9.f59de",
+        "type": "debug",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 735,
+        "y": 160,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "24f15b53.fc4304",
+        "type": "inject",
+        "z": "9db9e4d5.033558",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "home",
+                "v": "",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "86400",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "9d6f40b9.05451"
+            ]
+        ]
+    },
+    {
+        "id": "9d6f40b9.05451",
+        "type": "file in",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "filename": "/home/pi/datalog/displayErgonomia_20210515.csv",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 390,
+        "y": 400,
+        "wires": [
+            [
+                "9e43a59d.76fe68"
+            ]
+        ]
+    },
+    {
+        "id": "56c1f10b.9837c",
+        "type": "function",
+        "z": "9db9e4d5.033558",
+        "name": "Múltiples archivos adjuntos",
+        "func": "var directorioBase = 'D:/OneDrive/Documentos/BUAP/8 Semestre/Proyectos I+D/Proyecto Final Access Mask/' \nvar filename = 'displayErgonomia_20210514.csv';\n\n\n\n\n\nmsg.attachments = [\n        {\n        \"path\" : directorioBase + filename,\n        },\n        {\n        \"path\" : directorioBase + 'displayErgonomia_20210515.csv',\n        },\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "dc2373a2.e69a3"
+            ]
+        ]
+    },
+    {
+        "id": "b519f74d.373368",
+        "type": "inject",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "props": [
+            {
+                "p": "home",
+                "v": "",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 520,
+        "wires": [
+            [
+                "56c1f10b.9837c"
+            ]
+        ]
+    },
+    {
+        "id": "dc2373a2.e69a3",
+        "type": "change",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se adjuntan los reportes de mediciones del Display de Ergonomía.",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Reporte Mensual Display Ergonomía",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "b26d41ea.12b2",
+                "5ffcd0ef.0c6dd"
+            ]
+        ]
+    },
+    {
+        "id": "b26d41ea.12b2",
+        "type": "debug",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c96caaa3.1ab608",
+        "type": "inject",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "props": [
+            {
+                "p": "home",
+                "v": "",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "9d6f40b9.05451"
+            ]
+        ]
+    },
+    {
+        "id": "5ffcd0ef.0c6dd",
+        "type": "e-mail",
+        "z": "9db9e4d5.033558",
+        "server": "smtp-mail.outlook.com",
+        "port": "587",
+        "secure": false,
+        "tls": true,
+        "name": "carlos.d.san25@gmail.com",
+        "dname": "outlook",
+        "x": 920,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c16e683.9c83398",
+        "type": "e-mail",
+        "z": "9db9e4d5.033558",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "carlos.d.dan25@gmail.com",
+        "dname": "gmail",
+        "x": 930,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2f10646.e99ec9c",
+        "type": "e-mail",
+        "z": "9db9e4d5.033558",
+        "server": "smtp.live.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "carlos.d.dan25@gmail.com",
+        "dname": "hotmail",
+        "x": 940,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9e43a59d.76fe68",
+        "type": "change",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "description",
+                "pt": "msg",
+                "to": "Se adjuntan los reportes de mediciones del día.",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Reporte Display Ergonomía",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 400,
+        "wires": [
+            [
+                "5ffcd0ef.0c6dd",
+                "2f10646.e99ec9c",
+                "c16e683.9c83398"
+            ]
+        ]
+    },
+    {
+        "id": "7d627f47.e52e9",
+        "type": "comment",
+        "z": "9db9e4d5.033558",
+        "name": "Pruebas para enviar correos",
+        "info": "",
+        "x": 160,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a904d310.033b5",
+        "type": "inject",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "props": [
+            {
+                "p": "home",
+                "v": "",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "347bea72.4f4776"
+            ]
+        ]
+    },
+    {
+        "id": "2329c031.f25de",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [
+            "193f6a50.8d5ae6"
+        ],
+        "x": 215,
+        "y": 160,
+        "wires": [
+            [
+                "9a8ced22.26a49"
+            ]
+        ]
+    },
+    {
+        "id": "2682cfe1.b626",
+        "type": "comment",
+        "z": "d0f801d.0d00a",
+        "name": "Mediciones",
+        "info": "",
+        "x": 270,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "9a8ced22.26a49",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/temp'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/temp'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "d4bf316a.0f397",
+                "1fc4757d.52af4b"
+            ]
+        ]
+    },
+    {
+        "id": "d7abe49e.08ca78",
+        "type": "comment",
+        "z": "d0f801d.0d00a",
+        "name": "¿Recibes mensajes duplicados? Prueba borrar y vuelve a arrastrar los mqtt in dinámicos problemáticos",
+        "info": "Es una funcionalidad no tan cool de los nodos, se pueden suscribir más de una vez al mismo tópico",
+        "x": 390,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "95fabb10.1ead38",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [
+            "5089a2d3.0f52ac"
+        ],
+        "x": 215,
+        "y": 220,
+        "wires": [
+            [
+                "fe0f2f65.61eaf"
+            ]
+        ]
+    },
+    {
+        "id": "fe0f2f65.61eaf",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/hum'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/hum'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "d4bf316a.0f397",
+                "1fc4757d.52af4b"
+            ]
+        ]
+    },
+    {
+        "id": "1fc4757d.52af4b",
+        "type": "mqtt out",
+        "z": "d0f801d.0d00a",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8714eca8.27de2",
+        "x": 670,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d9c42bf7.3df2a8",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [
+            "ad6b09d4.5b4e88"
+        ],
+        "x": 215,
+        "y": 280,
+        "wires": [
+            [
+                "582cbee.1157f4"
+            ]
+        ]
+    },
+    {
+        "id": "582cbee.1157f4",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/uv'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "1fc4757d.52af4b",
+                "d4bf316a.0f397"
+            ]
+        ]
+    },
+    {
+        "id": "d4bf316a.0f397",
+        "type": "debug",
+        "z": "d0f801d.0d00a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "849186a9.2fd1a8",
+        "type": "comment",
+        "z": "d0f801d.0d00a",
+        "name": "Tester",
+        "info": "",
+        "x": 890,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2d507d66.c500c2",
+        "type": "mqtt in",
+        "z": "d0f801d.0d00a",
+        "name": "",
+        "topic": "DisplayErgonomia/0/tester'",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "8714eca8.27de2",
+        "x": 950,
+        "y": 200,
+        "wires": [
+            [
+                "57327f1d.badf"
+            ]
+        ]
+    },
+    {
+        "id": "57327f1d.badf",
+        "type": "debug",
+        "z": "d0f801d.0d00a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1210,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4e91fdc9.166e14",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [],
+        "x": 215,
+        "y": 340,
+        "wires": [
+            [
+                "bb37b39d.8dbfc"
+            ]
+        ]
+    },
+    {
+        "id": "bb37b39d.8dbfc",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 340,
+        "wires": [
+            [
+                "1fc4757d.52af4b"
+            ]
+        ]
+    },
+    {
+        "id": "d874026d.aa25",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [],
+        "x": 215,
+        "y": 400,
+        "wires": [
+            [
+                "5fb12d1e.1512f4"
+            ]
+        ]
+    },
+    {
+        "id": "5fb12d1e.1512f4",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea0686db.9dce28",
+        "type": "link in",
+        "z": "d0f801d.0d00a",
+        "name": "chat+mqtt-vapri",
+        "links": [],
+        "x": 215,
+        "y": 460,
+        "wires": [
+            [
+                "9cbca052.79e64"
+            ]
+        ]
+    },
+    {
+        "id": "9cbca052.79e64",
+        "type": "function",
+        "z": "d0f801d.0d00a",
+        "name": "DisplayErgonomia/SerialNo/'",
+        "func": "var serial = global.get('SerialNo') || 0;\n\nmsg.topic = 'DisplayErgonomia/'+ serial +'/uv'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 460,
+        "wires": [
+            []
+        ]
     }
 ]

@@ -9,7 +9,8 @@
         "node-red-dashboard": "2.19.2",
         "node-red-node-pi-neopixel": "0.1.1",
         "node-red-contrib-anolog-to-digital-converter-raspberry-pi": "0.4.25",
-        "node-red-node-rbe": "0.5.0"
+        "node-red-node-rbe": "0.5.0",
+        "node-red-node-smooth": "0.1.2"
     },
     "node-red": {
         "settings": {

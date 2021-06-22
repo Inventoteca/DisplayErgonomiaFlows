@@ -26,7 +26,8 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 # Contantes
 UV_INDEX_MULT = 2.1 #multiplicador para obtener índice UV
-MQ_OFFSET = 0.090 #voltaje de salida con aire limpio
+UV_OFFSET = 0.985 #voltaje de salida con indice cero
+MQ_OFFSET = 0.210 #voltaje de salida con aire limpio
 MQ_MULT = 1000.0 #multiplicador para convertir a ppm
 MQ_N = 10 #número de muestras sensor MQ-135
 MQ_T = 0.0 #tiempo entre lecturas sensor MQ-135
@@ -65,7 +66,7 @@ while (True):
   
   # Leer ML8511 (luz UV) ----------------------------
   uv_voltage = chan0.voltage
-  uv_intensity = mapf(uv_voltage, 0.985, 2.2, 0.0, 10.0)
+  uv_intensity = mapf(uv_voltage, UV_OFFSET, 2.2, 0.0, 10.0)
   uv_index = uv_intensity * UV_INDEX_MULT
   # pasar a diccionario
   data["uv"] = {

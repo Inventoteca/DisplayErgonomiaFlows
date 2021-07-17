@@ -1673,7 +1673,8 @@
         "z": "69a283fa.9a5a2c",
         "name": "ToTelegram",
         "links": [
-            "ab026bfd.bfdf78"
+            "ab026bfd.bfdf78",
+            "41bbf922.e61fd8"
         ],
         "x": 1095,
         "y": 160,
@@ -1787,8 +1788,7 @@
         "y": 160,
         "wires": [
             [
-                "e88e25bb.7c9c48",
-                "fb6ec254.f8c79"
+                "e88e25bb.7c9c48"
             ]
         ]
     },
@@ -1834,8 +1834,7 @@
         "y": 120,
         "wires": [
             [
-                "52837dbf.618e94",
-                "fb6ec254.f8c79"
+                "52837dbf.618e94"
             ]
         ]
     },
@@ -1941,7 +1940,8 @@
             "dc5307d8.6fd2e8",
             "4905f533.8fc32c",
             "8ec3a41c.f25008",
-            "9532c2cf.fc3af"
+            "9532c2cf.fc3af",
+            "3126966f.81c91a"
         ],
         "x": 835,
         "y": 140,
@@ -2176,7 +2176,7 @@
         "payload": "sudo reboot",
         "payloadType": "str",
         "x": 590,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "5f42b30b.baefac"
@@ -2195,7 +2195,7 @@
         "oldrc": false,
         "name": "",
         "x": 910,
-        "y": 140,
+        "y": 100,
         "wires": [
             [],
             [],
@@ -2215,7 +2215,7 @@
         "payload": "sudo halt",
         "payloadType": "str",
         "x": 580,
-        "y": 191.25000190734863,
+        "y": 151.25000190734863,
         "wires": [
             [
                 "6ea70a47.2ae674"
@@ -2232,7 +2232,7 @@
             "3fef1992.0aabb6"
         ],
         "x": 735,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "5f42b30b.baefac"
@@ -2246,7 +2246,7 @@
         "name": "Básicas ",
         "info": "",
         "x": 550,
-        "y": 80,
+        "y": 40,
         "wires": []
     },
     {
@@ -2261,7 +2261,7 @@
         "oldrc": false,
         "name": "",
         "x": 900,
-        "y": 191.25000190734863,
+        "y": 151.25000190734863,
         "wires": [
             [],
             [],
@@ -2279,7 +2279,7 @@
             "814cc8d0.e42f98"
         ],
         "x": 735,
-        "y": 191.25000190734863,
+        "y": 151.25000190734863,
         "wires": [
             [
                 "6ea70a47.2ae674"
@@ -2305,7 +2305,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 100,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "2bf2cc62.b20d14"
@@ -2322,7 +2322,7 @@
             "91876530.101f28"
         ],
         "x": 415,
-        "y": 140,
+        "y": 100,
         "wires": []
     },
     {
@@ -2344,7 +2344,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 100,
-        "y": 180,
+        "y": 140,
         "wires": [
             [
                 "b2d323f.56ae5e"
@@ -2358,7 +2358,7 @@
         "name": "Básicos",
         "info": "",
         "x": 90,
-        "y": 80,
+        "y": 40,
         "wires": []
     },
     {
@@ -2376,7 +2376,7 @@
         "topic": "",
         "name": "",
         "x": 270,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "814cc8d0.e42f98"
@@ -2393,7 +2393,7 @@
             "251b557b.e61f7a"
         ],
         "x": 415,
-        "y": 180,
+        "y": 140,
         "wires": []
     },
     {
@@ -2411,7 +2411,7 @@
         "topic": "",
         "name": "",
         "x": 270,
-        "y": 180,
+        "y": 140,
         "wires": [
             [
                 "3fef1992.0aabb6"
@@ -4562,8 +4562,7 @@
         "y": 200,
         "wires": [
             [
-                "a9358133.43d59",
-                "fb6ec254.f8c79"
+                "a9358133.43d59"
             ]
         ]
     },
@@ -4577,7 +4576,7 @@
             "ed80a221.4e79"
         ],
         "x": 515,
-        "y": 340,
+        "y": 300,
         "wires": [
             [
                 "3934c8d.1e65138"
@@ -4591,7 +4590,7 @@
         "name": "Agregar WiFi",
         "info": "",
         "x": 570,
-        "y": 260,
+        "y": 220,
         "wires": []
     },
     {
@@ -4605,7 +4604,7 @@
         "initialize": "",
         "finalize": "",
         "x": 660,
-        "y": 340,
+        "y": 300,
         "wires": [
             [
                 "ffe31a0d.6d62f8",
@@ -4626,7 +4625,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 990,
-        "y": 320,
+        "y": 280,
         "wires": []
     },
     {
@@ -4641,7 +4640,7 @@
         "oldrc": false,
         "name": "",
         "x": 830,
-        "y": 340,
+        "y": 300,
         "wires": [
             [
                 "ffe31a0d.6d62f8",
@@ -4665,7 +4664,7 @@
             "bf451b65.c5a3e8"
         ],
         "x": 235,
-        "y": 320,
+        "y": 280,
         "wires": []
     },
     {
@@ -4677,7 +4676,7 @@
             "cebb0268.fd78c"
         ],
         "x": 55,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "e4cbd36b.30e21"
@@ -4697,7 +4696,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 180,
-        "y": 380,
+        "y": 340,
         "wires": []
     },
     {
@@ -4709,7 +4708,7 @@
             "1a8c4323.2dc83d"
         ],
         "x": 55,
-        "y": 380,
+        "y": 340,
         "wires": [
             [
                 "aa0b4637.cb8cc8"
@@ -4723,7 +4722,7 @@
         "name": "Configuración WiFi",
         "info": "",
         "x": 130,
-        "y": 260,
+        "y": 220,
         "wires": []
     },
     {
@@ -4761,7 +4760,7 @@
         "cancel": "Cancel",
         "topic": "",
         "x": 150,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "ed80a221.4e79"
@@ -4781,7 +4780,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 1010,
-        "y": 360,
+        "y": 320,
         "wires": []
     },
     {
@@ -7543,8 +7542,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 750,
-        "y": 440,
+        "x": 770,
+        "y": 400,
         "wires": [
             [
                 "1a8c4323.2dc83d",
@@ -7567,8 +7566,8 @@
             "eb46a588.815758",
             "a8c90c1a.b31fe"
         ],
-        "x": 995,
-        "y": 420,
+        "x": 895,
+        "y": 440,
         "wires": []
     },
     {
@@ -7583,8 +7582,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
-        "y": 460,
+        "x": 950,
+        "y": 400,
         "wires": []
     },
     {
@@ -7611,8 +7610,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 570,
-        "y": 440,
+        "x": 590,
+        "y": 400,
         "wires": [
             [
                 "e97c7c4b.9868b"
@@ -7735,7 +7734,8 @@
         "name": "from /ip",
         "links": [
             "fb8cb6f7.942de8",
-            "9e53bfc2.e3329"
+            "9e53bfc2.e3329",
+            "35feb884.bd5478"
         ],
         "x": 195,
         "y": 280,
@@ -7747,9 +7747,10 @@
         "z": "7f137852.8b9328",
         "name": "",
         "links": [
-            "21be9a2f.daf7a6"
+            "21be9a2f.daf7a6",
+            "b9ab70c4.1723c"
         ],
-        "x": 495,
+        "x": 515,
         "y": 540,
         "wires": [
             [
@@ -7784,10 +7785,11 @@
         "z": "7f137852.8b9328",
         "name": "fromIPTelegram",
         "links": [
-            "ab026bfd.bfdf78"
+            "ab026bfd.bfdf78",
+            "41bbf922.e61fd8"
         ],
         "x": 1035,
-        "y": 560,
+        "y": 540,
         "wires": []
     },
     {
@@ -7805,23 +7807,6 @@
         "statusType": "auto",
         "x": 1110,
         "y": 200,
-        "wires": []
-    },
-    {
-        "id": "fb6ec254.f8c79",
-        "type": "debug",
-        "z": "69a283fa.9a5a2c",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 330,
-        "y": 280,
         "wires": []
     },
     {
@@ -7866,28 +7851,30 @@
         "x": 930,
         "y": 540,
         "wires": [
-            [
-                "c7b89843.b00318"
-            ],
+            [],
             [
                 "9532c2cf.fc3af"
             ]
         ]
     },
     {
-        "id": "c7b89843.b00318",
-        "type": "debug",
+        "id": "c0649c46.f7cd7",
+        "type": "comment",
         "z": "7f137852.8b9328",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1070,
-        "y": 520,
+        "name": "IP para Telegram",
+        "info": "",
+        "x": 570,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8e96ac3.e344a5",
+        "type": "comment",
+        "z": "2de0f07d.fb2df",
+        "name": "Flow para nodos de Telegram",
+        "info": "",
+        "x": 170,
+        "y": 40,
         "wires": []
     }
 ]

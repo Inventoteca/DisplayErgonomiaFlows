@@ -18,14 +18,18 @@ while (True):
   time.sleep(2.0) #esperar
   # Leer DHT22 ----------------------------------------
   humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+  #
   # valor cero en caso de error
-  if humidity is None:
-    humidity = 0
-  if temperature is None:
-    temperature = 0
-  # pasar a diccionario
-  data["dht"] = {
-    "humidity": humidity,
-    "temperature": temperature
-  }
-  print(json.dumps(data)) #exportar datos
+  #if humidity is None:
+  #  humidity = 0
+  #if temperature is None:
+  #  temperature = 0
+  #
+  # Mejor enviar dato solo si no hubo error
+  if humidity is not None and temperature is not None:
+    # pasar a diccionario
+    data["dht"] = {
+      "humidity": humidity,
+      "temperature": temperature
+    }
+    print(json.dumps(data)) #exportar datos

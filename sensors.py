@@ -27,7 +27,7 @@ from adafruit_ads1x15.analog_in import AnalogIn
 # Contantes
 UV_INDEX_MULT = 2.1 #multiplicador para obtener índice UV
 UV_OFFSET = 0.985 #voltaje de salida con indice cero
-MQ_OFFSET = 0.270 #voltaje de salida con aire limpio
+MQ_OFFSET = 0.265 #voltaje de salida con aire limpio
 MQ_MULT = 1000.0 #multiplicador para convertir a ppm
 MQ_N = 10 #número de muestras sensor MQ-135
 MQ_T = 0.0 #tiempo entre lecturas sensor MQ-135

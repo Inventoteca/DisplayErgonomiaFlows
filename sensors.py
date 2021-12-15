@@ -89,6 +89,8 @@ while (True):
   
   avg = sum_ / MQ_N #promedio
   ppm = (avg - MQ_OFFSET) * MQ_MULT #particulas por millón
+  if ppm < 0:
+    ppm = 0
   # pasar a diccionario
   data["gas"] = {
     "voltage": avg,

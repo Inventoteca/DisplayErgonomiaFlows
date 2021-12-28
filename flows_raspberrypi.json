@@ -6711,7 +6711,9 @@
         "x": 1270,
         "y": 200,
         "wires": [
-            []
+            [
+                "a849a95d.d527a8"
+            ]
         ]
     },
     {
@@ -6844,7 +6846,6 @@
         "id": "92e070a1.d755",
         "type": "inject",
         "z": "9db9e4d5.033558",
-        "d": true,
         "name": "",
         "props": [
             {
@@ -6857,7 +6858,7 @@
         ],
         "repeat": "60",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "5",
         "topic": "",
         "payload": "",
@@ -6923,7 +6924,7 @@
         "type": "file in",
         "z": "9db9e4d5.033558",
         "name": "",
-        "filename": "/home/pi/datalog/displayErgonomia_20210515.csv",
+        "filename": "/home/pi/datalog/displayErgonomia_20211228.csv",
         "format": "",
         "chunk": false,
         "sendError": false,
@@ -7071,7 +7072,7 @@
         "server": "smtp-mail.outlook.com",
         "port": "587",
         "secure": false,
-        "tls": true,
+        "tls": false,
         "name": "davic.one@gmail.com",
         "dname": "outlook",
         "x": 920,
@@ -7084,8 +7085,8 @@
         "z": "9db9e4d5.033558",
         "server": "smtp.gmail.com",
         "port": "465",
-        "secure": true,
-        "tls": true,
+        "secure": false,
+        "tls": false,
         "name": "davic.one@gmail.com",
         "dname": "gmail",
         "x": 930,
@@ -7898,9 +7899,9 @@
         "type": "range",
         "z": "f15c88c3.1d8bf8",
         "minin": "0",
-        "maxin": "200",
+        "maxin": "130",
         "minout": "0",
-        "maxout": "200",
+        "maxout": "130",
         "action": "roll",
         "round": true,
         "property": "payload",
@@ -7985,6 +7986,22 @@
         "statusType": "auto",
         "x": 1040,
         "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a849a95d.d527a8",
+        "type": "debug",
+        "z": "9db9e4d5.033558",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 340,
         "wires": []
     }
 ]

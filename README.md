@@ -3,7 +3,10 @@ DisplayErgonomia
 
 Display que muestra valores del entorno
 
-### About
+### AP/Station WiFi
+Se utiliza el contenedor de docker: https://github.com/cjimti/iotwifi
 
-This is your project's README.md file. It helps users understand what your
-project does, how to use it and anything else they may need to know.
+
+### comando, limita los archivos log, estaban llenando el espacio disponiible
+
+docker run -d --name wifipanel --privileged --net host --restart=unless-stopped       -v $(pwd)/wificfg.json:/cfg/wificfg.json --log-opt max-size=10m --log-opt max-file=5 davidfigcas/iotwifi

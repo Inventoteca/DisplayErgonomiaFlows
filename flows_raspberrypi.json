@@ -7,13 +7,6 @@
         "info": ""
     },
     {
-        "id": "9db9e4d5.033558",
-        "type": "tab",
-        "label": "Registro de datos",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "d0f801d.0d00a",
         "type": "tab",
         "label": "MQTT",
@@ -49,17 +42,31 @@
         "info": ""
     },
     {
+        "id": "88db3aef.2b87a8",
+        "type": "tab",
+        "label": "Registro Datos",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "69a283fa.9a5a2c",
         "type": "tab",
         "label": "Ngrok",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "2de0f07d.fb2df",
         "type": "tab",
         "label": "Telegram",
-        "disabled": false,
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "be267083.dcc3f",
+        "type": "tab",
+        "label": "omega-serial",
+        "disabled": true,
         "info": ""
     },
     {
@@ -341,6 +348,49 @@
         "willPayload": ""
     },
     {
+        "id": "3e2e8ad3.ba59f6",
+        "type": "serial-port",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "d8596899.c56458",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "ae47cffa.963c78",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ae47cffa.963c78",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "4f5d09ea.852ac8",
+        "type": "ui_group",
+        "name": "Registro de Datos",
+        "tab": "5d2a389b.943628",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "89bb9876.262388",
         "type": "rpi-neopixels",
         "z": "cf4eb861.964c88",
@@ -449,8 +499,7 @@
         "y": 120,
         "wires": [
             [
-                "2e341ec6.508162",
-                "419a9c32.b9f944"
+                "2e341ec6.508162"
             ]
         ]
     },
@@ -1850,23 +1899,12 @@
         "type": "ngrok",
         "z": "69a283fa.9a5a2c",
         "port": "",
-        "portType": "node-red",
-        "host": "",
-        "hostType": "localhost",
         "creds": "eda31419.aedc68",
         "region": "",
-        "regionType": "us",
         "proto": "http",
-        "bind_tls": "",
-        "bind_tlsType": "https",
         "subdomain": "",
-        "subdomainType": "none",
-        "auth": "",
-        "authType": "none",
-        "hostHeader": "",
-        "hostHeaderType": "none",
         "name": "ngrok:1880",
-        "inputs": 1,
+        "auth": "",
         "x": 410,
         "y": 120,
         "wires": [
@@ -4593,9 +4631,8 @@
         "creds": "ad639dd2.96355",
         "region": "us",
         "subdomain": "",
-        "auth": "",
         "name": "ngrok:5000",
-        "inputs": 1,
+        "auth": "",
         "x": 410,
         "y": 200,
         "wires": [
@@ -4613,11 +4650,11 @@
             "7949855e.5454ac",
             "ed80a221.4e79"
         ],
-        "x": 515,
+        "x": 495,
         "y": 300,
         "wires": [
             [
-                "3934c8d.1e65138"
+                "b973d5ea.0d3108"
             ]
         ]
     },
@@ -4641,8 +4678,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 660,
-        "y": 300,
+        "x": 780,
+        "y": 260,
         "wires": [
             [
                 "ffe31a0d.6d62f8",
@@ -4662,8 +4699,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
-        "y": 280,
+        "x": 1150,
+        "y": 260,
         "wires": []
     },
     {
@@ -4677,7 +4714,7 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 830,
+        "x": 970,
         "y": 300,
         "wires": [
             [
@@ -4817,7 +4854,7 @@
         "label": "Connection",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1010,
+        "x": 1170,
         "y": 320,
         "wires": []
     },
@@ -5490,7 +5527,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromLUXMedicion",
         "links": [
-            "200580c3.d5c42"
+            "200580c3.d5c42",
+            "23d6c17b.047d4e",
+            "d874026d.aa25"
         ],
         "x": 1475,
         "y": 480,
@@ -5502,6 +5541,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromTemMedicion",
         "links": [
+            "2329c031.f25de",
+            "23d6c17b.047d4e",
             "368e7783.a36588"
         ],
         "x": 1475,
@@ -5514,6 +5555,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromHUMMedicion",
         "links": [
+            "23d6c17b.047d4e",
+            "95fabb10.1ead38",
             "fcf2e33.79d542"
         ],
         "x": 1475,
@@ -5526,7 +5569,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromVoltsUVMedicion",
         "links": [
-            "2d48cc28.e5c9a4"
+            "23d6c17b.047d4e",
+            "2d48cc28.e5c9a4",
+            "d9c42bf7.3df2a8"
         ],
         "x": 1475,
         "y": 640,
@@ -5538,6 +5583,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensDBMedicion",
         "links": [
+            "23d6c17b.047d4e",
+            "4e91fdc9.166e14",
             "8fcee55b.025d28"
         ],
         "x": 1475,
@@ -5550,7 +5597,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensPPMMedicion",
         "links": [
-            "2e017f19.e00c9"
+            "23d6c17b.047d4e",
+            "2e017f19.e00c9",
+            "ea0686db.9dce28"
         ],
         "x": 1475,
         "y": 960,
@@ -6366,8 +6415,7 @@
         "y": 480,
         "wires": [
             [
-                "a99917c4.71daa8",
-                "4869765c.d270b8"
+                "a99917c4.71daa8"
             ]
         ]
     },
@@ -6495,8 +6543,7 @@
         "y": 640,
         "wires": [
             [
-                "3ccadf86.a180d",
-                "81413a7b.839468"
+                "3ccadf86.a180d"
             ]
         ]
     },
@@ -6592,593 +6639,7 @@
         "y": 300,
         "wires": [
             [
-                "d7325b33.6bd1a8",
-                "722cf8f8.4bffe8"
-            ]
-        ]
-    },
-    {
-        "id": "c6114229.6db0d",
-        "type": "comment",
-        "z": "9db9e4d5.033558",
-        "name": "Registra las mediciones a partir de los valores Current cada minuto.",
-        "info": "",
-        "x": 280,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "347bea72.4f4776",
-        "type": "function",
-        "z": "9db9e4d5.033558",
-        "name": "Set data",
-        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\nvar time = new Date().getTime();\nvar date = new Date(time); // create Date object\n\nmsg.payload = {\n    \"timestamp\" : date,\n    \"Temperatura\" : temp,\n    \"Humedad\" : hum,\n    \"UV\" : UV,\n    \"dB\" : DB,\n    \"Lux Index\" : lux,\n    \"PPM\" : PPM,\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 260,
-        "y": 200,
-        "wires": [
-            [
-                "a1b6f4a8.169488"
-            ]
-        ]
-    },
-    {
-        "id": "a1b6f4a8.169488",
-        "type": "function",
-        "z": "9db9e4d5.033558",
-        "name": "Filename generator",
-        "func": "// Get the current time and convert it to text\nvar now = new Date();\nvar yyyy = now.getFullYear();\nvar mm = now.getMonth() < 9 ? \"0\" + (now.getMonth() + 1) : (now.getMonth() + 1); // getMonth() is zero-based\nvar dd  = now.getDate() < 10 ? \"0\" + now.getDate() : now.getDate();\nvar hh = now.getHours() < 10 ? \"0\" + now.getHours() : now.getHours();\nvar mmm  = now.getMinutes() < 10 ? \"0\" + now.getMinutes() : now.getMinutes();\nvar ss  = now.getSeconds() < 10 ? \"0\" + now.getSeconds() : now.getSeconds();\n\n// Generate out file name pattern\nmsg.fname = \"displayErgonomia_\"+ yyyy + mm + dd + \".csv\";\n// Full filename with path for the file node later\nmsg.filename = \"/home/pi/datalog/\"+ msg.fname;\n//msg.filename = \"D:/OneDrive/Documentos/BUAP/8 Semestre/Proyectos I+D/Proyecto Final Access Mask/\"+ msg.fname;\n\n// We save the current payload into a different place on the msg object\nmsg.filecontent = msg.payload;\n\n// We are passing the file name search pattern to fs node to tell us if the file exists or not\nmsg.payload = {\"pattern\":msg.fname};\n\nnode.status({fill:\"blue\",shape:\"ring\",text:msg.fname});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 430,
-        "y": 200,
-        "wires": [
-            [
-                "f5ef08c0.4ecaa8",
-                "bb58d215.ab7bb"
-            ]
-        ]
-    },
-    {
-        "id": "4f540638.161a78",
-        "type": "switch",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "property": "$count(msg.payload)",
-        "propertyType": "jsonata",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "num"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 770,
-        "y": 200,
-        "wires": [
-            [
-                "317303b8.e168fc"
-            ],
-            [
-                "5ef6b771.b073b8"
-            ]
-        ]
-    },
-    {
-        "id": "8c4268c4.b2d1d8",
-        "type": "csv",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "all",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "timestamp,temperature,humidity",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": false,
-        "include_null_values": false,
-        "x": 1110,
-        "y": 180,
-        "wires": [
-            [
-                "3a7869f3.a254e6"
-            ]
-        ]
-    },
-    {
-        "id": "3a7869f3.a254e6",
-        "type": "file",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "filename": "",
-        "appendNewline": false,
-        "createDir": true,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1270,
-        "y": 200,
-        "wires": [
-            [
-                "a849a95d.d527a8"
-            ]
-        ]
-    },
-    {
-        "id": "d70272c2.994f5",
-        "type": "csv",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "timestamp,temperature,humidity",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": false,
-        "include_null_values": false,
-        "x": 1110,
-        "y": 220,
-        "wires": [
-            [
-                "3a7869f3.a254e6"
-            ]
-        ]
-    },
-    {
-        "id": "317303b8.e168fc",
-        "type": "change",
-        "z": "9db9e4d5.033558",
-        "name": "Get file content",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "filecontent",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 180,
-        "wires": [
-            [
-                "8c4268c4.b2d1d8"
-            ]
-        ]
-    },
-    {
-        "id": "5ef6b771.b073b8",
-        "type": "change",
-        "z": "9db9e4d5.033558",
-        "name": "Get file content",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "filecontent",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 220,
-        "wires": [
-            [
-                "d70272c2.994f5"
-            ]
-        ]
-    },
-    {
-        "id": "f5ef08c0.4ecaa8",
-        "type": "fs-file-lister",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "start": "/home/pi/datalog/",
-        "pattern": "",
-        "folders": "*",
-        "hidden": true,
-        "lstype": "files",
-        "path": true,
-        "single": true,
-        "depth": 0,
-        "stat": true,
-        "showWarnings": false,
-        "x": 620,
-        "y": 180,
-        "wires": [
-            [
-                "4f540638.161a78",
-                "9b0461d9.f59de"
-            ]
-        ]
-    },
-    {
-        "id": "bb58d215.ab7bb",
-        "type": "fs-file-lister",
-        "z": "9db9e4d5.033558",
-        "d": true,
-        "name": "",
-        "start": "D:\\OneDrive\\Documentos\\BUAP\\8 Semestre\\Proyectos I+D\\Proyecto Final Access Mask",
-        "pattern": "",
-        "folders": "*",
-        "hidden": true,
-        "lstype": "files",
-        "path": true,
-        "single": true,
-        "depth": 0,
-        "stat": true,
-        "showWarnings": false,
-        "x": 620,
-        "y": 220,
-        "wires": [
-            [
-                "4f540638.161a78",
-                "9b0461d9.f59de"
-            ]
-        ]
-    },
-    {
-        "id": "92e070a1.d755",
-        "type": "inject",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 120,
-        "y": 200,
-        "wires": [
-            [
-                "347bea72.4f4776"
-            ]
-        ]
-    },
-    {
-        "id": "9b0461d9.f59de",
-        "type": "debug",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 735,
-        "y": 160,
-        "wires": [],
-        "l": false
-    },
-    {
-        "id": "24f15b53.fc4304",
-        "type": "inject",
-        "z": "9db9e4d5.033558",
-        "d": true,
-        "name": "",
-        "props": [
-            {
-                "p": "home",
-                "v": "",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "86400",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 400,
-        "wires": [
-            [
-                "9d6f40b9.05451"
-            ]
-        ]
-    },
-    {
-        "id": "9d6f40b9.05451",
-        "type": "file in",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "filename": "/home/pi/datalog/displayErgonomia_20211228.csv",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "x": 390,
-        "y": 400,
-        "wires": [
-            [
-                "9e43a59d.76fe68"
-            ]
-        ]
-    },
-    {
-        "id": "56c1f10b.9837c",
-        "type": "function",
-        "z": "9db9e4d5.033558",
-        "name": "Múltiples archivos adjuntos",
-        "func": "var directorioBase = 'D:/OneDrive/Documentos/BUAP/8 Semestre/Proyectos I+D/Proyecto Final Access Mask/' \nvar filename = 'displayErgonomia_20210514.csv';\n\n\n\n\n\nmsg.attachments = [\n        {\n        \"path\" : directorioBase + filename,\n        },\n        {\n        \"path\" : directorioBase + 'displayErgonomia_20210515.csv',\n        },\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 360,
-        "y": 520,
-        "wires": [
-            [
-                "dc2373a2.e69a3"
-            ]
-        ]
-    },
-    {
-        "id": "b519f74d.373368",
-        "type": "inject",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "props": [
-            {
-                "p": "home",
-                "v": "",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 520,
-        "wires": [
-            [
-                "56c1f10b.9837c"
-            ]
-        ]
-    },
-    {
-        "id": "dc2373a2.e69a3",
-        "type": "change",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Se adjuntan los reportes de mediciones del Display de Ergonomía.",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Reporte Mensual Display Ergonomía",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 620,
-        "y": 520,
-        "wires": [
-            [
-                "b26d41ea.12b2",
-                "5ffcd0ef.0c6dd"
-            ]
-        ]
-    },
-    {
-        "id": "b26d41ea.12b2",
-        "type": "debug",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "c96caaa3.1ab608",
-        "type": "inject",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "props": [
-            {
-                "p": "home",
-                "v": "",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 440,
-        "wires": [
-            [
-                "9d6f40b9.05451"
-            ]
-        ]
-    },
-    {
-        "id": "5ffcd0ef.0c6dd",
-        "type": "e-mail",
-        "z": "9db9e4d5.033558",
-        "server": "smtp-mail.outlook.com",
-        "port": "587",
-        "secure": false,
-        "tls": false,
-        "name": "davic.one@gmail.com",
-        "dname": "outlook",
-        "x": 920,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "c16e683.9c83398",
-        "type": "e-mail",
-        "z": "9db9e4d5.033558",
-        "server": "smtp.gmail.com",
-        "port": "465",
-        "secure": false,
-        "tls": false,
-        "name": "davic.one@gmail.com",
-        "dname": "gmail",
-        "x": 930,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "2f10646.e99ec9c",
-        "type": "e-mail",
-        "z": "9db9e4d5.033558",
-        "server": "smtp.live.com",
-        "port": "465",
-        "secure": true,
-        "tls": true,
-        "name": "davic.one@gmail.com",
-        "dname": "hotmail",
-        "x": 940,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "9e43a59d.76fe68",
-        "type": "change",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "description",
-                "pt": "msg",
-                "to": "Se adjuntan los reportes de mediciones del día.",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Reporte Display Ergonomía",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 720,
-        "y": 400,
-        "wires": [
-            [
-                "5ffcd0ef.0c6dd",
-                "2f10646.e99ec9c",
-                "c16e683.9c83398"
-            ]
-        ]
-    },
-    {
-        "id": "7d627f47.e52e9",
-        "type": "comment",
-        "z": "9db9e4d5.033558",
-        "name": "Pruebas para enviar correos",
-        "info": "",
-        "x": 160,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "a904d310.033b5",
-        "type": "inject",
-        "z": "9db9e4d5.033558",
-        "name": "",
-        "props": [
-            {
-                "p": "home",
-                "v": "",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 130,
-        "y": 240,
-        "wires": [
-            [
-                "347bea72.4f4776"
+                "d7325b33.6bd1a8"
             ]
         ]
     },
@@ -7188,7 +6649,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-temp",
         "links": [
-            "419a9c32.b9f944"
+            "419a9c32.b9f944",
+            "193f6a50.8d5ae6"
         ],
         "x": 215,
         "y": 200,
@@ -7243,7 +6705,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-hum",
         "links": [
-            "722cf8f8.4bffe8"
+            "722cf8f8.4bffe8",
+            "5089a2d3.0f52ac"
         ],
         "x": 215,
         "y": 260,
@@ -7291,7 +6754,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-uv",
         "links": [
-            "81413a7b.839468"
+            "81413a7b.839468",
+            "ad6b09d4.5b4e88"
         ],
         "x": 215,
         "y": 320,
@@ -7384,7 +6848,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-db",
         "links": [
-            "8533e7b1.3715d8"
+            "8533e7b1.3715d8",
+            "209ce585.3bd34a"
         ],
         "x": 215,
         "y": 380,
@@ -7418,7 +6883,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-lux",
         "links": [
-            "4869765c.d270b8"
+            "4869765c.d270b8",
+            "f6c5a013.9c1f8"
         ],
         "x": 215,
         "y": 440,
@@ -7452,7 +6918,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-ppm",
         "links": [
-            "9e493a9b.dd0998"
+            "9e493a9b.dd0998",
+            "2f67091d.60f986"
         ],
         "x": 215,
         "y": 500,
@@ -7507,23 +6974,6 @@
                 "355a58bf.9c3bb8"
             ]
         ]
-    },
-    {
-        "id": "3aca1ac6.36a986",
-        "type": "rbe",
-        "z": "f15c88c3.1d8bf8",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "property": "payload",
-        "x": 1095,
-        "y": 680,
-        "wires": [
-            []
-        ],
-        "l": false
     },
     {
         "id": "97b16fd.191e19",
@@ -7583,8 +7033,8 @@
             "eb46a588.815758",
             "a8c90c1a.b31fe"
         ],
-        "x": 895,
-        "y": 440,
+        "x": 1015,
+        "y": 380,
         "wires": []
     },
     {
@@ -7599,8 +7049,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 950,
-        "y": 400,
+        "x": 1030,
+        "y": 420,
         "wires": []
     },
     {
@@ -7610,24 +7060,21 @@
         "name": "IP Check",
         "props": [
             {
-                "p": "payload",
-                "v": "",
-                "vt": "date"
+                "p": "payload"
             },
             {
                 "p": "topic",
-                "v": "",
-                "vt": "string"
+                "vt": "str"
             }
         ],
-        "repeat": "60",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": "60",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 590,
+        "x": 580,
         "y": 400,
         "wires": [
             [
@@ -7654,66 +7101,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "4869765c.d270b8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromLUXMedicion",
-        "links": [
-            "d874026d.aa25"
-        ],
-        "x": 755,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "419a9c32.b9f944",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromTemMedicion",
-        "links": [
-            "2329c031.f25de"
-        ],
-        "x": 755,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "722cf8f8.4bffe8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromHUMMedicion",
-        "links": [
-            "95fabb10.1ead38"
-        ],
-        "x": 755,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "81413a7b.839468",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromRAWVoltsUVMedicion",
-        "links": [
-            "d9c42bf7.3df2a8"
-        ],
-        "x": 755,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "8533e7b1.3715d8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromRAWIntensDBMedicion",
-        "links": [
-            "4e91fdc9.166e14"
-        ],
-        "x": 715,
-        "y": 880,
-        "wires": []
     },
     {
         "id": "9e493a9b.dd0998",
@@ -7910,7 +7297,6 @@
         "y": 800,
         "wires": [
             [
-                "8533e7b1.3715d8",
                 "923e4aac.c80288",
                 "4b425789.45ed48",
                 "728b4086.32659",
@@ -7932,7 +7318,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "3420",
+        "repeat": "2100",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -7951,14 +7337,14 @@
         "id": "653e5899.e84568",
         "type": "exec",
         "z": "7f137852.8b9328",
-        "command": "docker restart a97c9",
+        "command": "docker restart wifipanel",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 830,
+        "x": 840,
         "y": 660,
         "wires": [
             [
@@ -7989,9 +7375,101 @@
         "wires": []
     },
     {
-        "id": "a849a95d.d527a8",
+        "id": "9b6e4fd4.d6acb",
+        "type": "serial out",
+        "z": "be267083.dcc3f",
+        "name": "",
+        "serial": "3e2e8ad3.ba59f6",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3d7cac1d.291d74",
+        "type": "link in",
+        "z": "be267083.dcc3f",
+        "name": "omega-serial",
+        "links": [],
+        "x": 285,
+        "y": 120,
+        "wires": [
+            [
+                "9b6e4fd4.d6acb"
+            ]
+        ]
+    },
+    {
+        "id": "773b9658.2af318",
+        "type": "inject",
+        "z": "be267083.dcc3f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "9b6e4fd4.d6acb"
+            ]
+        ]
+    },
+    {
+        "id": "b973d5ea.0d3108",
+        "type": "rbe",
+        "z": "7f137852.8b9328",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "3934c8d.1e65138"
+            ]
+        ]
+    },
+    {
+        "id": "23d6c17b.047d4e",
+        "type": "link in",
+        "z": "88db3aef.2b87a8",
+        "name": "registro-datos-temp",
+        "links": [
+            "193f6a50.8d5ae6",
+            "5089a2d3.0f52ac",
+            "209ce585.3bd34a",
+            "f6c5a013.9c1f8",
+            "ad6b09d4.5b4e88",
+            "2f67091d.60f986"
+        ],
+        "x": 235,
+        "y": 200,
+        "wires": [
+            [
+                "90d37566.145a78"
+            ]
+        ]
+    },
+    {
+        "id": "3f38758.2a3488a",
         "type": "debug",
-        "z": "9db9e4d5.033558",
+        "z": "88db3aef.2b87a8",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -8000,8 +7478,62 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1260,
-        "y": 340,
+        "x": 650,
+        "y": 300,
         "wires": []
+    },
+    {
+        "id": "9a6774a.1802588",
+        "type": "file",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "filename": "/home/pi/data/log.csv",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90d37566.145a78",
+        "type": "function",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\nvar time = new Date().getTime();\nvar date = new Date(time); // create Date object\n\nmsg.payload = date + ',' + temp + ',' + hum + ',' + UV + ',' + DB + ',' + lux + ','+ PPM;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "3f38758.2a3488a",
+                "9a6774a.1802588"
+            ]
+        ]
+    },
+    {
+        "id": "71bd6044.791278",
+        "type": "ui_template",
+        "z": "88db3aef.2b87a8",
+        "group": "4f5d09ea.852ac8",
+        "name": "Descargar Datos",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <a href=\"/log.csv\" download=\"log.csv\"> Descargar </a>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            []
+        ]
     }
 ]

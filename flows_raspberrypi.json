@@ -42,6 +42,13 @@
         "info": ""
     },
     {
+        "id": "88db3aef.2b87a8",
+        "type": "tab",
+        "label": "Registro Datos",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "69a283fa.9a5a2c",
         "type": "tab",
         "label": "Ngrok",
@@ -360,6 +367,30 @@
         "responsetimeout": "10000"
     },
     {
+        "id": "d8596899.c56458",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "ae47cffa.963c78",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ae47cffa.963c78",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "4f5d09ea.852ac8",
+        "type": "ui_group",
+        "name": "Registro de Datos",
+        "tab": "5d2a389b.943628",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "89bb9876.262388",
         "type": "rpi-neopixels",
         "z": "cf4eb861.964c88",
@@ -468,8 +499,7 @@
         "y": 120,
         "wires": [
             [
-                "2e341ec6.508162",
-                "419a9c32.b9f944"
+                "2e341ec6.508162"
             ]
         ]
     },
@@ -5497,7 +5527,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromLUXMedicion",
         "links": [
-            "200580c3.d5c42"
+            "200580c3.d5c42",
+            "23d6c17b.047d4e",
+            "d874026d.aa25"
         ],
         "x": 1475,
         "y": 480,
@@ -5509,6 +5541,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromTemMedicion",
         "links": [
+            "2329c031.f25de",
+            "23d6c17b.047d4e",
             "368e7783.a36588"
         ],
         "x": 1475,
@@ -5521,6 +5555,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromHUMMedicion",
         "links": [
+            "23d6c17b.047d4e",
+            "95fabb10.1ead38",
             "fcf2e33.79d542"
         ],
         "x": 1475,
@@ -5533,7 +5569,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromVoltsUVMedicion",
         "links": [
-            "2d48cc28.e5c9a4"
+            "23d6c17b.047d4e",
+            "2d48cc28.e5c9a4",
+            "d9c42bf7.3df2a8"
         ],
         "x": 1475,
         "y": 640,
@@ -5545,6 +5583,8 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensDBMedicion",
         "links": [
+            "23d6c17b.047d4e",
+            "4e91fdc9.166e14",
             "8fcee55b.025d28"
         ],
         "x": 1475,
@@ -5557,7 +5597,9 @@
         "z": "f15c88c3.1d8bf8",
         "name": "fromIntensPPMMedicion",
         "links": [
-            "2e017f19.e00c9"
+            "23d6c17b.047d4e",
+            "2e017f19.e00c9",
+            "ea0686db.9dce28"
         ],
         "x": 1475,
         "y": 960,
@@ -6373,8 +6415,7 @@
         "y": 480,
         "wires": [
             [
-                "a99917c4.71daa8",
-                "4869765c.d270b8"
+                "a99917c4.71daa8"
             ]
         ]
     },
@@ -6502,8 +6543,7 @@
         "y": 640,
         "wires": [
             [
-                "3ccadf86.a180d",
-                "81413a7b.839468"
+                "3ccadf86.a180d"
             ]
         ]
     },
@@ -6599,8 +6639,7 @@
         "y": 300,
         "wires": [
             [
-                "d7325b33.6bd1a8",
-                "722cf8f8.4bffe8"
+                "d7325b33.6bd1a8"
             ]
         ]
     },
@@ -6610,7 +6649,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-temp",
         "links": [
-            "419a9c32.b9f944"
+            "419a9c32.b9f944",
+            "193f6a50.8d5ae6"
         ],
         "x": 215,
         "y": 200,
@@ -6665,7 +6705,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-hum",
         "links": [
-            "722cf8f8.4bffe8"
+            "722cf8f8.4bffe8",
+            "5089a2d3.0f52ac"
         ],
         "x": 215,
         "y": 260,
@@ -6713,7 +6754,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-uv",
         "links": [
-            "81413a7b.839468"
+            "81413a7b.839468",
+            "ad6b09d4.5b4e88"
         ],
         "x": 215,
         "y": 320,
@@ -6806,7 +6848,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-db",
         "links": [
-            "8533e7b1.3715d8"
+            "8533e7b1.3715d8",
+            "209ce585.3bd34a"
         ],
         "x": 215,
         "y": 380,
@@ -6840,7 +6883,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-lux",
         "links": [
-            "4869765c.d270b8"
+            "4869765c.d270b8",
+            "f6c5a013.9c1f8"
         ],
         "x": 215,
         "y": 440,
@@ -6874,7 +6918,8 @@
         "z": "d0f801d.0d00a",
         "name": "to-mqtt-ppm",
         "links": [
-            "9e493a9b.dd0998"
+            "9e493a9b.dd0998",
+            "2f67091d.60f986"
         ],
         "x": 215,
         "y": 500,
@@ -6929,23 +6974,6 @@
                 "355a58bf.9c3bb8"
             ]
         ]
-    },
-    {
-        "id": "3aca1ac6.36a986",
-        "type": "rbe",
-        "z": "f15c88c3.1d8bf8",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "property": "payload",
-        "x": 1095,
-        "y": 680,
-        "wires": [
-            []
-        ],
-        "l": false
     },
     {
         "id": "97b16fd.191e19",
@@ -7073,66 +7101,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "4869765c.d270b8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromLUXMedicion",
-        "links": [
-            "d874026d.aa25"
-        ],
-        "x": 755,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "419a9c32.b9f944",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromTemMedicion",
-        "links": [
-            "2329c031.f25de"
-        ],
-        "x": 755,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "722cf8f8.4bffe8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromHUMMedicion",
-        "links": [
-            "95fabb10.1ead38"
-        ],
-        "x": 755,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "81413a7b.839468",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromRAWVoltsUVMedicion",
-        "links": [
-            "d9c42bf7.3df2a8"
-        ],
-        "x": 755,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "8533e7b1.3715d8",
-        "type": "link out",
-        "z": "f15c88c3.1d8bf8",
-        "name": "fromRAWIntensDBMedicion",
-        "links": [
-            "4e91fdc9.166e14"
-        ],
-        "x": 715,
-        "y": 880,
-        "wires": []
     },
     {
         "id": "9e493a9b.dd0998",
@@ -7329,7 +7297,6 @@
         "y": 800,
         "wires": [
             [
-                "8533e7b1.3715d8",
                 "923e4aac.c80288",
                 "4b425789.45ed48",
                 "728b4086.32659",
@@ -7351,7 +7318,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "600",
+        "repeat": "2100",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -7476,6 +7443,97 @@
             [
                 "3934c8d.1e65138"
             ]
+        ]
+    },
+    {
+        "id": "23d6c17b.047d4e",
+        "type": "link in",
+        "z": "88db3aef.2b87a8",
+        "name": "registro-datos-temp",
+        "links": [
+            "193f6a50.8d5ae6",
+            "5089a2d3.0f52ac",
+            "209ce585.3bd34a",
+            "f6c5a013.9c1f8",
+            "ad6b09d4.5b4e88",
+            "2f67091d.60f986"
+        ],
+        "x": 235,
+        "y": 200,
+        "wires": [
+            [
+                "90d37566.145a78"
+            ]
+        ]
+    },
+    {
+        "id": "3f38758.2a3488a",
+        "type": "debug",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9a6774a.1802588",
+        "type": "file",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "filename": "/home/pi/data/log.csv",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90d37566.145a78",
+        "type": "function",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\nvar time = new Date().getTime();\nvar date = new Date(time); // create Date object\n\nmsg.payload = date + ',' + temp + ',' + hum + ',' + UV + ',' + DB + ',' + lux + ','+ PPM;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "3f38758.2a3488a",
+                "9a6774a.1802588"
+            ]
+        ]
+    },
+    {
+        "id": "71bd6044.791278",
+        "type": "ui_template",
+        "z": "88db3aef.2b87a8",
+        "group": "4f5d09ea.852ac8",
+        "name": "Descargar Datos",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <a href=\"/log.csv\" download=\"log.csv\"> Descargar </a>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            []
         ]
     }
 ]

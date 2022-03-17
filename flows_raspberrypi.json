@@ -14,6 +14,13 @@
         "info": ""
     },
     {
+        "id": "88db3aef.2b87a8",
+        "type": "tab",
+        "label": "Registro Datos",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "c38c08a9.69fc18",
         "type": "tab",
         "label": "Rango de Colores",
@@ -38,13 +45,6 @@
         "id": "d0f801d.0d00a",
         "type": "tab",
         "label": "MQTT",
-        "disabled": true,
-        "info": ""
-    },
-    {
-        "id": "88db3aef.2b87a8",
-        "type": "tab",
-        "label": "Registro Datos",
         "disabled": true,
         "info": ""
     },
@@ -377,6 +377,20 @@
         "collapse": false
     },
     {
+        "id": "847341b.4c9e5c",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "home",
+        "name": "panel",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.8-flux",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    },
+    {
         "id": "89bb9876.262388",
         "type": "rpi-neopixels",
         "z": "cf4eb861.964c88",
@@ -554,7 +568,7 @@
         "type": "debug",
         "z": "f15c88c3.1d8bf8",
         "name": "uv",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1327,7 +1341,7 @@
         "type": "debug",
         "z": "f15c88c3.1d8bf8",
         "name": "db",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6403,22 +6417,6 @@
         ]
     },
     {
-        "id": "3f38758.2a3488a",
-        "type": "debug",
-        "z": "88db3aef.2b87a8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 650,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "9a6774a.1802588",
         "type": "file",
         "z": "88db3aef.2b87a8",
@@ -6428,8 +6426,8 @@
         "createDir": true,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 640,
-        "y": 200,
+        "x": 440,
+        "y": 300,
         "wires": [
             []
         ]
@@ -6439,17 +6437,17 @@
         "type": "function",
         "z": "88db3aef.2b87a8",
         "name": "",
-        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\nvar time = new Date().getTime();\nvar date = new Date(time); // create Date object\n\nmsg.payload = date + ',' + temp + ',' + hum + ',' + UV + ',' + DB + ',' + lux + ','+ PPM;\nreturn msg;",
+        "func": "var temp = global.get('currentTemp');\nvar hum = global.get('currentHum');\nvar lux = global.get('currentLux');\nvar PPM = global.get('currentPPM');\nvar DB = global.get('currentDB');\nvar UV = global.get('currentUV');\n\n//var time = new Date().getTime();\n//var date = new Date(time); // create Date object\nmsg.topic = \"sensors\"\n\nmsg.payload = \n    {\n        temp: temp,\n        hum: hum,\n        lux: lux,\n        PPM: PPM,\n        DB: DB,\n        UV: UV\n    }\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 360,
+        "x": 380,
         "y": 200,
         "wires": [
             [
-                "3f38758.2a3488a",
-                "9a6774a.1802588"
+                "aa5b00b7.ef9c7",
+                "cb966169.7adc6"
             ]
         ]
     },
@@ -6457,6 +6455,7 @@
         "id": "71bd6044.791278",
         "type": "ui_template",
         "z": "88db3aef.2b87a8",
+        "d": true,
         "group": "4f5d09ea.852ac8",
         "name": "Descargar Datos",
         "order": 0,
@@ -6466,8 +6465,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 390,
-        "y": 300,
+        "x": 430,
+        "y": 340,
         "wires": [
             []
         ]
@@ -6480,9 +6479,9 @@
         "func": "deadband",
         "gap": "2",
         "start": "",
-        "inout": "out",
+        "inout": "in",
         "property": "payload",
-        "x": 920,
+        "x": 900,
         "y": 640,
         "wires": [
             [
@@ -6661,5 +6660,39 @@
                 "c36172ea.32c34"
             ]
         ]
+    },
+    {
+        "id": "aa5b00b7.ef9c7",
+        "type": "debug",
+        "z": "88db3aef.2b87a8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cb966169.7adc6",
+        "type": "influxdb out",
+        "z": "88db3aef.2b87a8",
+        "influxdb": "847341b.4c9e5c",
+        "name": "",
+        "measurement": "measurement",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "panel",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 670,
+        "y": 240,
+        "wires": []
     }
 ]

@@ -15,3 +15,12 @@ docker run -d --name wifipanel --privileged --net host --restart=unless-stopped 
 "ip": "192.168.27.1",
 "ssid": "iot-wifi-cfg-3",
 "wpa_passphrase":"iotwifipass",
+
+
+### Datos para influx
+"user": grafana
+"pass": Unapalabra
+
+### Datos para grafana
+"user": admin
+"pass": raspberry
